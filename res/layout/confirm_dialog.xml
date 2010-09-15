@@ -1,0 +1,5 @@
+<LinearLayout android:id="@+id/LinearLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"><TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:padding="20dip" android:gravity="center" android:id="@+id/tvMessage" android:text="@string/lab_confirm_exit"></TextView>
+<LinearLayout android:id="@+id/LinearLayout02" android:layout_height="wrap_content" android:layout_width="fill_parent" android:gravity="center"><Button android:layout_height="wrap_content" android:textStyle="bold" android:layout_width="70dip" android:id="@+id/btnYes" android:text="@string/lab_yes"></Button>
+<Button android:layout_height="wrap_content" android:textStyle="bold" android:layout_width="70dip" android:id="@+id/btnNo" android:text="@string/lab_no"></Button>
+</LinearLayout>
+</LinearLayout>

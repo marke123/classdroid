@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!-- Portfolio/primary blogger configuration page -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:padding="5dip">
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:textStyle="bold" android:textSize="16dip" android:gravity="center" android:text="@string/lab_pri_conf"/>
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:textSize="15dip"
+		android:textStyle="bold"
+		android:layout_marginTop="10dip" android:paddingLeft="5dip" android:text="@string/lab_pupil_blog_url"/>
+	<EditText android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:textSize="13dip"
+		android:id="@+id/editUrl" android:layout_marginLeft="5dip"
+		android:layout_marginRight="5dip" android:text="http://demopupil.primaryblogger.co.uk/" android:inputType="textUri"></EditText>
+	<CheckBox android:layout_height="wrap_content"
+		android:checked="true" android:id="@+id/cbUseDefault"
+		android:layout_marginLeft="5dip" android:layout_width="fill_parent" android:text="@string/lab_use_def_conf"></CheckBox>
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:paddingLeft="5dip"
+		android:textStyle="bold"
+		android:textSize="16dip" android:text="@string/lab_teacher_username"/>
+	<EditText android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_marginLeft="5dip"
+		android:layout_marginRight="5dip" android:id="@+id/editTeacherUsername" android:hint="@string/lab_teacher_username"></EditText>
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:textSize="16dip"
+		android:textStyle="bold" android:paddingLeft="5dip" android:text="@string/lab_teacher_password"/>
+	<EditText android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_marginLeft="5dip"
+		android:layout_marginRight="5dip" android:id="@+id/editTeacherPassword"
+		android:inputType="textPassword" android:hint="@string/lab_teacher_password"></EditText><CheckBox android:layout_height="wrap_content" android:id="@+id/cbShowPassword" android:layout_width="fill_parent" android:layout_marginLeft="5dip" android:layout_marginRight="5dip" android:text="@string/lab_show_password"></CheckBox>
+	<LinearLayout android:id="@+id/LinearLayout03"
+		android:layout_width="fill_parent" android:gravity="center_horizontal" android:layout_height="wrap_content">
+		<Button android:layout_height="wrap_content" android:id="@+id/btnTest" android:textStyle="bold" android:layout_width="80dip" android:text="@string/lab_test"></Button><Button android:layout_height="wrap_content" android:textStyle="bold" android:id="@+id/btnSave" android:layout_width="80dip" android:text="@string/lab_save"></Button>
+		<Button android:layout_height="wrap_content" android:textStyle="bold" android:id="@+id/btnCancel" android:layout_width="80dip" android:text="@string/lab_cancel"></Button>
+	
+</LinearLayout>
+
+</LinearLayout>

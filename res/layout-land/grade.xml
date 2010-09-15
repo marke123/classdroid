@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!-- Grade work page -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TextView android:id="@+id/TextView01" android:layout_height="30dip" android:layout_width="fill_parent"
+		android:paddingLeft="5dip" android:textStyle="bold" android:gravity="center" android:textSize="27dip" android:text="@string/lab_grade_work"></TextView>
+	<ListView android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:id="@+id/listViewGrades"
+		android:scrollbars="none"></ListView>
+</LinearLayout>
