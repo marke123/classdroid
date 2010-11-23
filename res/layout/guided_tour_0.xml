@@ -1,0 +1,13 @@
+<LinearLayout android:id="@+id/LinearLayout01"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:padding="10dip">
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/text"
+		android:text="@string/tour_text_0" android:layout_weight="1"
+		android:textSize="17dip"></TextView>
+	
+<LinearLayout android:id="@+id/LinearLayout02" android:layout_height="wrap_content" android:layout_width="fill_parent"><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/btn_no" android:id="@+id/btnNo"></Button>
+<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/btn_yes" android:id="@+id/btnYes"></Button>
+</LinearLayout>
+</LinearLayout>

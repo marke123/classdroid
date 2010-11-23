@@ -1,0 +1,16 @@
+<LinearLayout android:id="@+id/LinearLayout01"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:padding="10dip">
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/text"
+		android:text="@string/tour_text_2" android:layout_weight="1"
+		android:textSize="17dip"></TextView>
+<LinearLayout android:id="@+id/LinearLayout02" android:layout_height="wrap_content" android:layout_width="fill_parent"><LinearLayout android:id="@+id/LinearLayout03" android:layout_width="wrap_content" android:orientation="vertical" android:layout_weight="1" android:layout_height="fill_parent" android:gravity="bottom"><TextView android:id="@+id/TextView01" android:layout_width="fill_parent" android:text="@string/text_proceed_config" android:layout_height="wrap_content" android:layout_weight="1"></TextView>
+<Button android:layout_height="wrap_content" android:text="@string/btn_proceed" android:layout_width="fill_parent" android:id="@+id/btnProceed"></Button>
+</LinearLayout>
+<LinearLayout android:id="@+id/LinearLayout04" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_weight="1"><TextView android:id="@+id/TextView02" android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="@string/text_list_platforms"></TextView>
+<Button android:layout_height="wrap_content" android:text="@string/btn_options" android:layout_width="fill_parent" android:id="@+id/btnOptions"></Button>
+</LinearLayout>
+</LinearLayout>
+</LinearLayout>

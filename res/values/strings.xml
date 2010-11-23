@@ -1,65 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <string name="app_name">Classdroid</string>
-<string name="lab_name">Name</string>
-<string name="lab_publish">Publish</string>
-<string name="lab_cb_portfolio">Image to Portfolio</string>
-<string name="lab_exp_points">Experience Points</string>
-<string name="lab_edit_pupil">Edit an already existing pupil</string>
-<string name="lab_save_add_another">Save and add another pupil</string>
-<string name="lab_save">Save</string>
-<string name="lab_cancel">Cancel</string>
-<string name="lab_long_tap_edit">Long tap a child to edit</string>
-<string name="lab_enter_name">Please enter the name of the pupil</string>
-<string name="lab_enter_default_url">Please enter the default URL</string>
-<string name="lab_enter_default_username">Please enter the default username</string>
-<string name="lab_enter_default_password">Please enter the default password</string>
-<string name="lab_pupil_updated">Pupil updated</string>
-<string name="lab_please_wait">Please wait...</string>
-<string name="lab_checking_credentials">Checking credentials</string>
-<string name="lab_enter_username">Please enter your username</string>
-<string name="lab_enter_password">Please enter your password</string>
-<string name="lab_enter_url">Please enter URL</string>
-<string name="lab_pri_blogger_default">Primary Blogger default</string>
-<string name="lab_credentials_ok">Credentials verified</string>
-<string name="lab_credentials_wrong">Wrong credentials</string>
-<string name="lab_add_new_pupil">Add a new pupil</string>
-<string name="lab_select_option">Please select an option</string>
-<string name="lab_edit">Edit</string>
-<string name="lab_delete">Delete</string>
-<string name="lab_action_cancelled">Action cancelled</string>
-<string name="lab_upload_new">Upload another assignment</string>
-<string name="lab_new_pupil_added">New pupil added</string>
-<string name="lab_configure_settings">Please configure settings for the student first</string>
-<string name="lab_pupil_deleted">Pupil deleted</string>
-<string name="lab_enter_nick">Please enter a nickname</string>
-<string name="lab_xp_arena_default">XPArena default</string>
-<string name="lab_upload_started">Assignment upload started</string>
-<string-array name="array_grades"><item>1 star</item>
-<item>2 stars</item>
-<item>3 stars</item>
-<item>4 stars</item>
-<item>5 stars</item>
-</string-array>
-<string name="lab_classdroid_error">Classdroid error</string>
-<string name="lab_upload_failed">Upload failed</string>
-<string name="lab_try_again">Click to try again</string>
-<string name="lab_confirm_exit">You have an image to upload. Do you really want to exit?</string>
-<string name="lab_yes">Yes</string>
-<string name="lab_no">No</string>
-<string name="lab_def_url">Default URL</string>
-<string name="lab_def_username">Default username</string>
-<string name="lab_def_password">Default password</string>
-<string name="lab_grade_work">Grade this work</string>
-<string name="lab_pri_conf">Primary Blogger configuration</string>
-<string name="lab_pupil_blog_url">Pupil\'s Blog URL</string>
-<string name="lab_use_def_conf">Use default configuration</string>
-<string name="lab_teacher_username">Teacher\'s username</string>
-<string name="lab_teacher_password">Teacher\'s password</string>
-<string name="lab_show_password">Show password</string>
-<string name="lab_test">Test</string>
-<string name="lab_select_pupil">Select a pupil</string>
-<string name="lab_xp_conf">XPArena Configuration</string>
-<string name="lab_nickname">Nickname</string>
+
+	<string name="app_name">Classdroid</string>
+	<string name="lab_name">Name</string>
+	<string name="lab_publish">Publish</string>
+	<string name="lab_cb_portfolio">Image to Portfolio</string>
+	<string name="lab_exp_points">Experience Points</string>
+	<string name="lab_edit_pupil">Edit an already existing pupil</string>
+	<string name="lab_save_add_another">Save and add another pupil</string>
+	<string name="lab_save">Save</string>
+	<string name="lab_cancel">Cancel</string>
+	<string name="lab_long_tap_edit">Long tap a child to edit</string>
+	<string name="lab_enter_name">Please enter the name of the pupil</string>
+	<string name="lab_enter_default_url">Please enter the default URL</string>
+	<string name="lab_enter_default_username">Please enter the default username</string>
+	<string name="lab_enter_default_password">Please enter the default password</string>
+	<string name="lab_pupil_updated">Pupil updated</string>
+	<string name="lab_please_wait">Please wait...</string>
+	<string name="lab_checking_credentials">Checking credentials</string>
+	<string name="lab_enter_username">Please enter your username</string>
+	<string name="lab_enter_password">Please enter your password</string>
+	<string name="lab_enter_url">Please enter URL</string>
+	<string name="lab_pri_blogger_default">Primary Blogger default</string>
+	<string name="lab_credentials_ok">Credentials verified</string>
+	<string name="lab_credentials_wrong">Wrong credentials</string>
+	<string name="lab_add_new_pupil">Add a new pupil</string>
+	<string name="lab_select_option">Please select an option</string>
+	<string name="lab_edit">Edit</string>
+	<string name="lab_delete">Delete</string>
+	<string name="lab_action_cancelled">Action cancelled</string>
+	<string name="lab_upload_new">Upload another assignment</string>
+	<string name="lab_new_pupil_added">New pupil added</string>
+	<string name="lab_configure_settings">Please configure settings for the student first
+	</string>
+	<string name="lab_pupil_deleted">Pupil deleted</string>
+	<string name="lab_enter_nick">Please enter a nickname</string>
+	<string name="lab_xp_arena_default">XPArena default</string>
+	<string name="lab_upload_started">Assignment upload started</string>
+	<string-array name="array_grades">
+		<item>1 star</item>
+		<item>2 stars</item>
+		<item>3 stars</item>
+		<item>4 stars</item>
+		<item>5 stars</item>
+	</string-array>
+	<string name="lab_classdroid_error">Classdroid error</string>
+	<string name="lab_upload_failed">Upload failed</string>
+	<string name="lab_try_again">Click to try again</string>
+	<string name="lab_confirm_exit">You have an image to upload. Do you really want to
+		exit?</string>
+	<string name="lab_yes">Yes</string>
+	<string name="lab_no">No</string>
+	<string name="lab_def_url">Default URL</string>
+	<string name="lab_def_username">Default username</string>
+	<string name="lab_def_password">Default password</string>
+	<string name="lab_grade_work">Grade this work</string>
+	<string name="lab_pri_conf">Primary Blogger configuration</string>
+	<string name="lab_pupil_blog_url">Pupil\'s Blog URL</string>
+	<string name="lab_use_def_conf">Use default configuration</string>
+	<string name="lab_teacher_username">Teacher\'s username</string>
+	<string name="lab_teacher_password">Teacher\'s password</string>
+	<string name="lab_show_password">Show password</string>
+	<string name="lab_test">Test</string>
+	<string name="lab_select_pupil">Select a pupil</string>
+	<string name="lab_xp_conf">XPArena Configuration</string>
+	<string name="lab_nickname">Nickname</string>
+	<string name="tour_text_0">Welcome to Classdroid
+		It looks like it\'s your first
+		time using classdroid. Would you like some
+		instructions on how to use
+		it?</string>
+	<string name="tour_text_1">"Classdroid is used to take pictures on your device
+		and upload them to the internet. Firstly we must configure where you
+		want to upload the pictures to." Click next to get started.</string>
+	<string name="tour_text_2">Your upload destination can be a wordpress blog
+		such as PrimaryBlogger, or you can contact your school website
+		provider to see if the pictures can be uploaded to their service.
+	</string>
+	<string name="btn_next">Next</string>
+	<string name="btn_yes">Yes</string>
+	<string name="btn_no">No</string>
+	<string name="btn_proceed">Proceed</string>
+	<string name="btn_options">Options</string>
+	<string name="text_proceed_config">I already have a website provider that works with
+		Classdroid.</string>
+	<string name="text_list_platforms">I need a platform that works with Classdroid. Take
+		me to a list of platforms.</string>
 </resources>
