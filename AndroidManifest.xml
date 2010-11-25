@@ -28,6 +28,7 @@
 		<activity android:name=".GuidedTour_0"></activity>
 		<activity android:name=".GuidedTour_1"></activity>
 		<activity android:name=".GuidedTour_2"></activity>
+		<activity android:name=".DefaultConfigurationActivity"></activity>
 		<service android:name=".services.ClassdroidService"></service>
 	</application>
 	<uses-sdk android:minSdkVersion="3" />

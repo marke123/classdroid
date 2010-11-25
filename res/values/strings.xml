@@ -65,25 +65,14 @@
 	<string name="lab_select_pupil">Select a pupil</string>
 	<string name="lab_xp_conf">XPArena Configuration</string>
 	<string name="lab_nickname">Nickname</string>
-	<string name="tour_text_0">Welcome to Classdroid
-		It looks like it\'s your first
-		time using classdroid. Would you like some
-		instructions on how to use
-		it?</string>
-	<string name="tour_text_1">"Classdroid is used to take pictures on your device
-		and upload them to the internet. Firstly we must configure where you
-		want to upload the pictures to." Click next to get started.</string>
-	<string name="tour_text_2">Your upload destination can be a wordpress blog
-		such as PrimaryBlogger, or you can contact your school website
-		provider to see if the pictures can be uploaded to their service.
-	</string>
+	<string name="tour_text_0">Welcome to Classdroid It looks like it\'s your first	time using Classdroid. Would you like some instructions on how to use it?</string>
+	<string name="tour_text_1">\"Classdroid is used to take pictures on your device and upload them to the internet. Firstly we must configure where you	want to upload the pictures to.\" Click next to get started.</string>
+	<string name="tour_text_2">Your upload destination can be a wordpress blog such as PrimaryBlogger, or you can contact your school website provider to see if the pictures can be uploaded to their service.</string>
 	<string name="btn_next">Next</string>
 	<string name="btn_yes">Yes</string>
 	<string name="btn_no">No</string>
 	<string name="btn_proceed">Proceed</string>
 	<string name="btn_options">Options</string>
-	<string name="text_proceed_config">I already have a website provider that works with
-		Classdroid.</string>
-	<string name="text_list_platforms">I need a platform that works with Classdroid. Take
-		me to a list of platforms.</string>
+	<string name="text_proceed_config">I already have a website provider that works with Classdroid.</string>
+	<string name="text_list_platforms">I need a platform that works with Classdroid. Take me to a list of platforms.</string>
 </resources>

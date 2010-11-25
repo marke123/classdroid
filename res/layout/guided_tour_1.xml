@@ -6,7 +6,7 @@
 		android:layout_height="wrap_content" android:id="@+id/text"
 		android:text="@string/tour_text_1" android:layout_weight="1"
 		android:textSize="17dip"></TextView>
-	<Button android:id="@+id/Button01" android:layout_height="wrap_content"
+	<Button android:layout_height="wrap_content"
 		android:layout_gravity="right" android:text="@string/btn_next"
-		android:layout_width="80dip"></Button>
+		android:layout_width="80dip" android:id="@+id/btnNext"></Button>
 </LinearLayout>

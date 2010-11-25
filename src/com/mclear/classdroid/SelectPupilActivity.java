@@ -3,7 +3,6 @@ package com.mclear.classdroid;
 
 import java.io.File;
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnDismissListener;
@@ -32,6 +31,7 @@ import com.mclear.classdroid.bo.Pupil;
 import com.mclear.classdroid.bo.PupilServices;
 import com.mclear.classdroid.db.DBAdapter;
 import com.mclear.classdroid.temp.ConfirmDialog;
+import com.mclear.classdroid.utils.Preferences;
 
 public class SelectPupilActivity extends ClassdroidActivity implements OnItemClickListener,
         OnDismissListener {
@@ -64,7 +64,18 @@ public class SelectPupilActivity extends ClassdroidActivity implements OnItemCli
 
         initializeUIElemets();
         reloadListView();
-        startCamera();
+        Preferences prefs = new Preferences(this);
+        if (prefs.isFirstRun()) {
+            startGuidedTour();
+            finish();
+        } else {
+            startCamera();
+        }
+    }
+
+    private void startGuidedTour() {
+        Intent intent = new Intent(this, GuidedTour_0.class);
+        startActivity(intent);
     }
 
     private void startCamera() {
