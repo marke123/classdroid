@@ -1,9 +1,11 @@
 
 package com.mclear.classdroid;
 
+import com.mclear.classdroid.temp.AppUtils;
 import com.mclear.classdroid.threads.WPLoginCheckThread;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -97,7 +99,16 @@ public class DefaultConfigurationActivity extends ClassdroidActivity {
     }
 
     private void saveDefaultValues() {
-
+        AppUtils utils = new AppUtils(this);
+        utils.setDefaultCredsPrimary(editUsername.getText().toString().trim(), editPassword
+                .getText().toString().trim());
+        utils.setDefaultPrimaryURL(editURL.getText().toString().trim());
+        utils.setFirstRun(false);
+        // Start the Take screenshot activity
+        
+        Intent intent = new Intent(this, SelectPupilActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private boolean isDataOK() {

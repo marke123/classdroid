@@ -32,7 +32,6 @@ public class GuidedTour_0 extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                // Write code to take the user directly to the default configuration screen
                 Intent intent = new Intent(getBaseContext(), DefaultConfigurationActivity.class);
                 startActivity(intent);
                 finish();

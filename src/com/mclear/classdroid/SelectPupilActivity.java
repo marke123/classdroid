@@ -30,8 +30,8 @@ import com.mclear.classdroid.adapters.PupilAdapter;
 import com.mclear.classdroid.bo.Pupil;
 import com.mclear.classdroid.bo.PupilServices;
 import com.mclear.classdroid.db.DBAdapter;
+import com.mclear.classdroid.temp.AppUtils;
 import com.mclear.classdroid.temp.ConfirmDialog;
-import com.mclear.classdroid.utils.Preferences;
 
 public class SelectPupilActivity extends ClassdroidActivity implements OnItemClickListener,
         OnDismissListener {
@@ -64,8 +64,8 @@ public class SelectPupilActivity extends ClassdroidActivity implements OnItemCli
 
         initializeUIElemets();
         reloadListView();
-        Preferences prefs = new Preferences(this);
-        if (prefs.isFirstRun()) {
+        AppUtils util = new AppUtils(this);
+        if (util.isFirstRun()) {
             startGuidedTour();
             finish();
         } else {
