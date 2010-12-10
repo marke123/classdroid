@@ -75,4 +75,5 @@
 	<string name="btn_options">Options</string>
 	<string name="text_proceed_config">I already have a website provider that works with Classdroid.</string>
 	<string name="text_list_platforms">I need a platform that works with Classdroid. Take me to a list of platforms.</string>
+	<string name="lab_post_uploaded">Assignment successfully uploaded</string>
 </resources>
