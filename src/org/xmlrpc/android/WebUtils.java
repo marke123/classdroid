@@ -59,6 +59,8 @@ public class WebUtils {
         Object result = null;
         try {
             result = (Object) client.call("metaWeblog.newPost", params);
+            File file = new File(image);
+            file.delete();
         } catch (XMLRPCException e) {
             throw e;
         }
@@ -98,7 +100,8 @@ public class WebUtils {
 
         try {
             result = (Object) client.call("wp.uploadFile", params);
-            jpeg.delete();
+            // Don't delete the image now. The image should be deleted only after the post upload is successful
+//            jpeg.delete();
         } catch (XMLRPCException e) {
             throw e;
         }

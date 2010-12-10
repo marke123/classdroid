@@ -48,6 +48,7 @@ public class UploaderThread extends Thread {
                 post.setReturnedString(url);
                 dbAdapter.updatePost(post);
                 dbAdapter.close();
+                sendNotification();
             } else {
                 post.setReturnedString("");
             }
@@ -75,5 +76,14 @@ public class UploaderThread extends Thread {
         } finally {
             dbAdapter.close();
         }
+    }
+
+    private void sendNotification() {
+        NotificationManager nManager = (NotificationManager) context
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+        nManager.cancel(R.string.app_name);
+        Notification notification = new Notification(R.drawable.icon, context
+                .getString(R.string.lab_post_uploaded), System.currentTimeMillis());
+        nManager.notify(R.string.app_name, notification);
     }
 }
