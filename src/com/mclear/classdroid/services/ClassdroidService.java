@@ -1,13 +1,11 @@
 
 package com.mclear.classdroid.services;
 
-import com.mclear.classdroid.R;
-import com.mclear.classdroid.threads.UploaderThread;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.Toast;
+
+import com.mclear.classdroid.threads.UploaderThread;
 
 public class ClassdroidService extends Service {
     @Override
@@ -22,7 +20,6 @@ public class ClassdroidService extends Service {
         long postId = intent.getLongExtra("id", 0);
         UploaderThread thread = new UploaderThread(postId, this);
         thread.start();
-        Toast.makeText(this, getString(R.string.lab_upload_started), Toast.LENGTH_LONG).show();
     }
 
 }
