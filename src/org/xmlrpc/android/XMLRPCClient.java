@@ -366,7 +366,7 @@ public class XMLRPCClient {
 				serializer.endDocument();
 				
 				HttpEntity entity = new StringEntity(bodyWriter.toString());
-				//Log.i("WordPress", bodyWriter.toString());
+				Log.i("WordPress", bodyWriter.toString());
 				postMethod.setEntity(entity);
 			}
 

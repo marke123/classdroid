@@ -13,6 +13,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
 
 import android.os.Bundle;
@@ -49,7 +50,7 @@ public class WPLoginCheckThread extends Thread {
         if (adjustedURL.lastIndexOf("/") < adjustedURL.length() - 1) {
             adjustedURL = adjustedURL + "/";
         }
-        if(!adjustedURL.endsWith("xmlrpc.php")){
+        if (!adjustedURL.endsWith("xmlrpc.php")) {
             adjustedURL = adjustedURL + "xmlrpc.php";
         }
 
@@ -70,7 +71,8 @@ public class WPLoginCheckThread extends Thread {
         try {
             HttpEntity entity = new StringEntity(body.toString());
             postRequest.setEntity(entity);
-            postRequest.setHeader(HTTP.CONTENT_TYPE, "application/xml");
+            postRequest.setHeader(HTTP.CONTENT_TYPE, "text/xml");
+            client.getParams().setBooleanParameter(CoreProtocolPNames.USE_EXPECT_CONTINUE, false);
             HttpResponse response = client.execute(postRequest);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 InputStream stream = response.getEntity().getContent();

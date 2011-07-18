@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.Vector;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -23,6 +24,8 @@ public class WebUtils {
     @SuppressWarnings("unchecked")
     public static String uploadPostToWordpress(Pupil pupil, String image, String grade,
             PupilServices service, Context context) throws XMLRPCException {
+        
+        String categories = "";
 
         String adjustedURL = service.getUrl();
         if (!adjustedURL.contains("http://")) {
@@ -43,6 +46,11 @@ public class WebUtils {
         content.put("title", pupil.getName() + "'s work");
         // content.put("title", "Assignment for " + pupil.getName());
         content.put("description", prepareBodyOfPost(grade, imageURL));
+        Vector<String> cats = new Vector<String>();
+        cats.add("classdroid");
+        cats.add("stuff");
+        cats.add("Kumar");
+        content.put("categories", cats);
         String username = "";
         String password = "";
         if (service.getUseDefault() == PupilServices.USE_DEFAULT) {
