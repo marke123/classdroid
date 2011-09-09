@@ -1,1 +1,11 @@
-Classdroid is a teacher / student android app used to take pictures and instantly upload them to a learning portfolio/blog or other publishing platform.  It is written for android devices and currently supports Wordpress.  Moodle and other platform support can be added.
+Classdroid is a student/teacher android app used to take pictures and instantly upload them to a learning portfolio/blog or other publishing platform.
+
+Classdroid is designed to work in the classroom / education for assessment and recording pupil achievement.
+
+Classdroid currently only supports Wordpress however Moodle and other platform support can be added with some minor code modifications.
+
+Classdroid currently only supports android devices.   iPhone support will require a port.
+
+Classdroid is availalbe in the Google Market Place as a free download.
+
+We recommend blogs from PrimaryBlogger.
