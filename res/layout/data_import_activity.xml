@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="10dip"
-        android:text="@string/lab_message_export_data" />
+        android:text="@string/lab_message_import_data" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/lab_export" />
+            android:text="@string/lab_import" />
     </LinearLayout>
 
 </LinearLayout>
