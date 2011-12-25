@@ -16,8 +16,8 @@ import org.wordpress.android.MediaFile;
 
 import android.content.Context;
 
-import com.mclear.classdroid.bo.Pupil;
-import com.mclear.classdroid.bo.PupilServices;
+import com.primaryt.classdroid.bo.Pupil;
+import com.primaryt.classdroid.bo.PupilServices;
 
 public class WebUtils {
     @SuppressWarnings("unchecked")
