@@ -32,6 +32,7 @@ import com.mclear.classdroid.bo.PupilServices;
 import com.mclear.classdroid.db.DBAdapter;
 import com.mclear.classdroid.temp.AppUtils;
 import com.mclear.classdroid.temp.ConfirmDialog;
+import com.mclear.classdroid.utils.ExportUtils;
 
 public class SelectPupilActivity extends ClassdroidActivity implements OnItemClickListener,
         OnDismissListener {
@@ -65,12 +66,23 @@ public class SelectPupilActivity extends ClassdroidActivity implements OnItemCli
         initializeUIElemets();
         reloadListView();
         AppUtils util = new AppUtils(this);
-        if (util.isFirstRun()) {
-            startGuidedTour();
+        ExportUtils exportUtils = new ExportUtils(this);
+        if (exportUtils.isFirstRun()) {
+            startExportDataActivity();
             finish();
         } else {
-            startCamera();
+            if (util.isFirstRun()) {
+                startGuidedTour();
+                finish();
+            } else {
+                startCamera();
+            }
         }
+    }
+
+    private void startExportDataActivity() {
+        Intent intent = new Intent(this, DataExportActivity.class);
+        startActivity(intent);
     }
 
     private void startGuidedTour() {
@@ -81,9 +93,8 @@ public class SelectPupilActivity extends ClassdroidActivity implements OnItemCli
     private void startCamera() {
         File tempFolder = new File(Environment.getExternalStorageDirectory() + "/wordpress");
         tempFolder.mkdir();
-        file = new File(Environment.getExternalStorageDirectory() + "/wordpress", String
-                .valueOf(System.currentTimeMillis())
-                + ".jpg");
+        file = new File(Environment.getExternalStorageDirectory() + "/wordpress",
+                String.valueOf(System.currentTimeMillis()) + ".jpg");
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
         intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
