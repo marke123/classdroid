@@ -22,6 +22,7 @@ public class ExportUtils {
         if (isFirstRun) {
             Editor editor = preferences.edit();
             editor.putBoolean(FIRST_RUN, false);
+            editor.commit();
         }
         return isFirstRun;
     }

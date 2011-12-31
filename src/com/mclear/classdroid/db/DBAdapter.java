@@ -68,9 +68,9 @@ public class DBAdapter {
 					.getColumnIndex(IDBConstants.COL_KEY_ROW)));
 			pupil.setName(cursor.getString(cursor
 					.getColumnIndex(IDBConstants.PUPIL_NAME)));
-			if(!pupil.getName().equals("")){
+			if (!pupil.getName().equals("")) {
 				pupils.add(pupil);
-			}else{
+			} else {
 				trashPupil(pupil.getId());
 			}
 		}
@@ -78,34 +78,41 @@ public class DBAdapter {
 		return pupils;
 	}
 
-	private void trashPupil(long id){
+	private void trashPupil(long id) {
 		deletePupil(id);
 	}
+
 	public Post addPost(Post post) {
 		ContentValues values = new ContentValues();
 		values.put(IDBConstants.POST_PUPIL_ID, post.getPupilId());
 		values.put(IDBConstants.POST_IS_POSTED, post.getIsPosted());
-		values
-				.put(IDBConstants.POST_LOCAL_IMAGE_PATH, post
-						.getLocalImagePath());
+		values.put(IDBConstants.POST_LOCAL_IMAGE_PATH, post.getLocalImagePath());
 		values.put(IDBConstants.POST_RETURNED_STRING, post.getReturnedString());
 		values.put(IDBConstants.POST_TIMESTAMP, post.getTimestamp());
 		values.put(IDBConstants.POST_GRADE, post.getGrade());
 		post.setId(sqlDB.insert(IDBConstants.TABLE_POSTS, null, values));
 		return post;
 	}
-	
-	public Post getPostById(long postId){
+
+	public Post getPostById(long postId) {
 		Post post = new Post();
-		Cursor cursor = sqlDB.query(IDBConstants.TABLE_POSTS, null, IDBConstants.COL_KEY_ROW+"="+postId, null, null, null, null);
-		while(cursor.moveToNext()){
+		Cursor cursor = sqlDB
+				.query(IDBConstants.TABLE_POSTS, null, IDBConstants.COL_KEY_ROW
+						+ "=" + postId, null, null, null, null);
+		while (cursor.moveToNext()) {
 			post.setId(postId);
-			post.setPupilId(cursor.getLong(cursor.getColumnIndex(IDBConstants.POST_PUPIL_ID)));
-			post.setIsPosted(cursor.getInt(cursor.getColumnIndex(IDBConstants.POST_IS_POSTED)));
-			post.setLocalImagePath(cursor.getString(cursor.getColumnIndex(IDBConstants.POST_LOCAL_IMAGE_PATH)));
-			post.setReturnedString(cursor.getString(cursor.getColumnIndex(IDBConstants.POST_RETURNED_STRING)));
-			post.setTimestamp(cursor.getString(cursor.getColumnIndex(IDBConstants.POST_TIMESTAMP)));
-			post.setGrade(cursor.getString(cursor.getColumnIndex(IDBConstants.POST_GRADE)));
+			post.setPupilId(cursor.getLong(cursor
+					.getColumnIndex(IDBConstants.POST_PUPIL_ID)));
+			post.setIsPosted(cursor.getInt(cursor
+					.getColumnIndex(IDBConstants.POST_IS_POSTED)));
+			post.setLocalImagePath(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_LOCAL_IMAGE_PATH)));
+			post.setReturnedString(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_RETURNED_STRING)));
+			post.setTimestamp(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_TIMESTAMP)));
+			post.setGrade(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_GRADE)));
 		}
 		cursor.close();
 		return post;
@@ -149,8 +156,7 @@ public class DBAdapter {
 		values.put(IDBConstants.PSERV_PASSWORD, service.getPassword());
 		values.put(IDBConstants.PSERV_USEDEFAULT, service.getUseDefault());
 		sqlDB.update(IDBConstants.TABLE_PUPIL_SERVICES, values,
-				IDBConstants.COL_KEY_ROW + "=" + service.getId(),
-				null);
+				IDBConstants.COL_KEY_ROW + "=" + service.getId(), null);
 	}
 
 	public PupilServices addPupilService(PupilServices service) {
@@ -243,5 +249,60 @@ public class DBAdapter {
 		values.put(IDBConstants.POST_GRADE, post.getGrade());
 		sqlDB.update(IDBConstants.TABLE_POSTS, values, IDBConstants.COL_KEY_ROW
 				+ "=" + post.getId(), null);
+	}
+
+	public ArrayList<PupilServices> getAllPupilServices() {
+		ArrayList<PupilServices> services = new ArrayList<PupilServices>();
+		Cursor cursor = sqlDB.query(IDBConstants.TABLE_PUPIL_SERVICES, null,
+				null, null, null, null, null);
+		if (cursor.moveToNext()) {
+			PupilServices service = new PupilServices();
+			service.setId(cursor.getLong(cursor
+					.getColumnIndex(IDBConstants.COL_KEY_ROW)));
+			service.setPupilId(cursor.getLong(cursor
+					.getColumnIndex(IDBConstants.PSERV_PUPIL_ID)));
+			service.setServiceId(cursor.getLong(cursor
+					.getColumnIndex(IDBConstants.PSERV_SERV_ID)));
+			service.setIsEnabled(cursor.getInt(cursor
+					.getColumnIndex(IDBConstants.PSERV_ENABLED)));
+			service.setNickname(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.PSERV_NICK)));
+			service.setUrl(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.PSERV_URL)));
+			service.setUsername(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.PSERV_USERNAME)));
+			service.setPassword(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.PSERV_PASSWORD)));
+			service.setUseDefault(cursor.getInt(cursor
+					.getColumnIndex(IDBConstants.PSERV_USEDEFAULT)));
+			services.add(service);
+		}
+		cursor.close();
+		return services;
+	}
+
+	public ArrayList<Post> getAllPosts() {
+		ArrayList<Post> posts = new ArrayList<Post>();
+		Cursor cursor = sqlDB.query(IDBConstants.TABLE_POSTS, null, null, null,
+				null, null, null);
+		while (cursor.moveToNext()) {
+			Post post = new Post();
+			post.setId(cursor.getLong(cursor
+					.getColumnIndex(IDBConstants.COL_KEY_ROW)));
+			post.setPupilId(cursor.getLong(cursor
+					.getColumnIndex(IDBConstants.POST_PUPIL_ID)));
+			post.setIsPosted(cursor.getInt(cursor
+					.getColumnIndex(IDBConstants.POST_IS_POSTED)));
+			post.setLocalImagePath(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_LOCAL_IMAGE_PATH)));
+			post.setReturnedString(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_RETURNED_STRING)));
+			post.setTimestamp(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_TIMESTAMP)));
+			post.setGrade(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_GRADE)));
+		}
+		cursor.close();
+		return posts;
 	}
 }
