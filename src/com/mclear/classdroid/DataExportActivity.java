@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,6 +22,8 @@ import com.mclear.classdroid.bo.PupilServices;
 import com.mclear.classdroid.db.DBAdapter;
 
 public class DataExportActivity extends Activity {
+
+	private final static String TAG = "DataExportActivity";
 
 	private Button btnExport;
 	private final static int NO_SDCARD = 1;
@@ -183,6 +186,7 @@ public class DataExportActivity extends Activity {
 		DBAdapter adapter = new DBAdapter(this);
 		adapter.open();
 		ArrayList<PupilServices> services = adapter.getAllPupilServices();
+		Log.i(TAG, "Services: " + services.size());
 		for (PupilServices service : services) {
 			builder.append("<service>");
 			builder.append("<id>" + service.getId() + "</id>");
