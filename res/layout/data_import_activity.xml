@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="10dip"
-        android:text="@string/lab_message_import_data" />
+        android:text="@string/lab_message_import_data" android:textSize="17dip"/>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
