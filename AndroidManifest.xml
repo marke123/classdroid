@@ -31,7 +31,11 @@
 		<activity android:name=".DefaultConfigurationActivity"
 			android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation"></activity>
 		<service android:name=".services.ClassdroidService"></service>
-		<activity android:name=".DataExportActivity"></activity>
+		<activity android:name=".DataExportActivity">
+		    <intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+			</intent-filter>
+		</activity>
 	</application>
 	<uses-sdk android:minSdkVersion="3" />
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>

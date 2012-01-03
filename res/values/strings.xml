@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">Classdroid</string>
+	<string name="app_name">Classdroid Beta</string>
 	<string name="lab_name">Name</string>
 	<string name="lab_publish">Publish</string>
 	<string name="lab_cb_portfolio">Image to Portfolio</string>
