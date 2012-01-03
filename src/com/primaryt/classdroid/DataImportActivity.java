@@ -24,6 +24,7 @@ import android.widget.Button;
 
 import com.primaryt.classdroid.bo.Pupil;
 import com.primaryt.classdroid.bo.PupilServices;
+import com.primaryt.classdroid.db.DBAdapter;
 
 public class DataImportActivity extends Activity {
 	private final static String TAG = "DataImportActivity";
@@ -106,12 +107,37 @@ public class DataImportActivity extends Activity {
 
 			for (int i = 0; i < listPupils.getLength(); i++) {
 				Element p1 = (Element) listPupils.item(i);
+				NodeList attrs = p1.getChildNodes();
+				Element idEle = (Element) attrs.item(0);
+				Element nameEle = (Element) attrs.item(1);
 				Pupil p = new Pupil();
+				p.setId(Long.parseLong(idEle.getTextContent()));
+				p.setName(nameEle.getTextContent());
+				pupils.add(p);
 			}
 
 			for (int i = 0; i < listServices.getLength(); i++) {
-
+				Element s1 = (Element) listServices.item(i);
+				NodeList attrs = s1.getChildNodes();
+				PupilServices service = new PupilServices();
+				service.setId(Long.parseLong(((Element) attrs.item(0))
+						.getTextContent()));
+				service.setIsEnabled(Integer.parseInt(((Element) attrs.item(1))
+						.getTextContent()));
+				service.setPupilId(Long.parseLong(((Element) attrs.item(2))
+						.getTextContent()));
+				service.setServiceId(Long.parseLong(((Element) attrs.item(3))
+						.getTextContent()));
+				service.setNickname(((Element) attrs.item(4)).getTextContent());
+				service.setUrl(((Element) attrs.item(5)).getTextContent());
+				service.setUsername(((Element) attrs.item(6)).getTextContent());
+				service.setPassword(((Element) attrs.item(7)).getTextContent());
+				service.setUseDefault(Integer.parseInt(((Element) attrs.item(8))
+						.getTextContent()));
+				services.add(service);
 			}
+
+			updateDB(pupils, services);
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
@@ -119,5 +145,24 @@ public class DataImportActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void updateDB(ArrayList<Pupil> pupils,
+			ArrayList<PupilServices> services) {
+		DBAdapter adapter = new DBAdapter(getApplicationContext());
+		adapter.open();
+		for (Pupil pupil : pupils) {
+			long id = adapter.addPupil(pupil.getName());
+			for (PupilServices service : services) {
+				if (service.getPupilId() == pupil.getId()) {
+					service.setPupilId(id);
+				}
+			}
+			pupil.setId(id);
+		}
+		for (PupilServices service : services) {
+			adapter.addPupilService(service);
+		}
+		adapter.close();
 	}
 }
