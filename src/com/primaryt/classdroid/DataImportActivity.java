@@ -10,11 +10,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class DataImportActivity extends Activity {
+	private final static String TAG = "DataImportActivity";
 
 	private static final int REQUEST_AUTO_IMPORT = 2;
 
@@ -53,7 +55,8 @@ public class DataImportActivity extends Activity {
 	private void startImportActivity() {
 		Intent intent = new Intent();
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setClassName("com.mclear.classdroid", "com.mclear.classdroid.DataExportActivity");
+		intent.setClassName("com.mclear.classdroid",
+				"com.mclear.classdroid.DataExportActivity");
 		intent.putExtra("auto", true);
 		startActivityForResult(intent, REQUEST_AUTO_IMPORT);
 	}
@@ -61,10 +64,8 @@ public class DataImportActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode==REQUEST_AUTO_IMPORT){
-			if(resultCode==RESULT_OK){
-				retrieveBackupDataAndImport();
-			}
+		if (requestCode == REQUEST_AUTO_IMPORT) {
+			retrieveBackupDataAndImport();
 		}
 	}
 
@@ -91,5 +92,7 @@ public class DataImportActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		Log.i(TAG, stringBuffer.toString());
 	}
 }
