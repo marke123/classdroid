@@ -1,14 +1,13 @@
 package com.primaryt.classdroid;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -16,6 +15,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class DataImportActivity extends Activity {
+
+	private static final int REQUEST_AUTO_IMPORT = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,27 @@ public class DataImportActivity extends Activity {
 	}
 
 	private void startExporting() {
+		startImportActivity();
+	}
+
+	private void startImportActivity() {
+		Intent intent = new Intent();
+		intent.setClassName("com.mclear.classdroid", "DataExportActivity");
+		intent.putExtra("auto", true);
+		startActivityForResult(intent, REQUEST_AUTO_IMPORT);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==REQUEST_AUTO_IMPORT){
+			if(resultCode==RESULT_OK){
+				retrieveBackupDataAndImport();
+			}
+		}
+	}
+
+	private void retrieveBackupDataAndImport() {
 		String localFilePath = Environment.getExternalStorageDirectory()
 				.getAbsolutePath()
 				+ File.separator
@@ -68,8 +90,5 @@ public class DataImportActivity extends Activity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-
 }
