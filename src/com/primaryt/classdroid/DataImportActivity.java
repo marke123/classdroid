@@ -52,7 +52,8 @@ public class DataImportActivity extends Activity {
 
 	private void startImportActivity() {
 		Intent intent = new Intent();
-		intent.setClassName("com.mclear.classdroid", "DataExportActivity");
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.setClassName("com.mclear.classdroid", "com.mclear.classdroid.DataExportActivity");
 		intent.putExtra("auto", true);
 		startActivityForResult(intent, REQUEST_AUTO_IMPORT);
 	}
