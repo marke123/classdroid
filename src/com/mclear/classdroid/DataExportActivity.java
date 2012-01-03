@@ -27,12 +27,22 @@ public class DataExportActivity extends Activity {
 	private final static int NO_SDCARD = 1;
 	private final static int BACKUP_COMPLETE = 2;
 
+	private boolean isAuto = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.data_export_activity);
 
+		if (getIntent().getExtras() != null
+				&& getIntent().getExtras().containsKey("auto")) {
+			isAuto = getIntent().getExtras().getBoolean("auto");
+		}
 		initializeUIElements();
+
+		if (isAuto) {
+			startExporting();
+		}
 	}
 
 	private void initializeUIElements() {
@@ -83,12 +93,17 @@ public class DataExportActivity extends Activity {
 
 	private void actionBackupComplete() {
 		showMessage("Data backup completed");
+		setResult(RESULT_OK);
 		finish();
 	}
 
 	private void actionNoSDCard() {
 		btnExport.setEnabled(true);
 		showMessage("Data backup not possible. No SD Card found");
+		if (isAuto) {
+			setResult(RESULT_CANCELED);
+			finish();
+		}
 	}
 
 	private void showMessage(String message) {
@@ -170,7 +185,8 @@ public class DataExportActivity extends Activity {
 		for (PupilServices service : services) {
 			builder.append("<service>");
 			builder.append("<id>" + service.getId() + "</id>");
-			builder.append("<is-enabled>" + service.getIsEnabled()+"</is-enabled>");
+			builder.append("<is-enabled>" + service.getIsEnabled()
+					+ "</is-enabled>");
 			builder.append("<pupil-id>" + service.getPupilId() + "</pupil-id>");
 			builder.append("<service-id>" + service.getServiceId()
 					+ "</service-id>");
