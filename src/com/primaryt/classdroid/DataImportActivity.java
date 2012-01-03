@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -65,12 +66,19 @@ public class DataImportActivity extends Activity {
 	}
 
 	private void startImportActivity() {
-		Intent intent = new Intent();
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setClassName("com.mclear.classdroid",
-				"com.mclear.classdroid.DataExportActivity");
-		intent.putExtra("auto", true);
-		startActivityForResult(intent, REQUEST_AUTO_IMPORT);
+		try {
+			Intent intent = new Intent();
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.setClassName("com.mclear.classdroid",
+					"com.mclear.classdroid.DataExportActivity");
+			intent.putExtra("auto", true);
+			startActivityForResult(intent, REQUEST_AUTO_IMPORT);
+		} catch (ActivityNotFoundException e) {
+			Toast.makeText(
+					this,
+					"Please update Classdroid Beta to be able to import data into Classdroid",
+					Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override
