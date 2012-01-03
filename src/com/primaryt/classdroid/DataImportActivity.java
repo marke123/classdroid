@@ -21,6 +21,7 @@ import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.primaryt.classdroid.bo.Pupil;
 import com.primaryt.classdroid.bo.PupilServices;
@@ -77,6 +78,11 @@ public class DataImportActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == REQUEST_AUTO_IMPORT) {
 			retrieveBackupDataAndImport();
+			Toast.makeText(this, "Data import complete", Toast.LENGTH_LONG)
+					.show();
+			Intent intent = new Intent(this, SelectPupilActivity.class);
+			startActivity(intent);
+			finish();
 		}
 	}
 
