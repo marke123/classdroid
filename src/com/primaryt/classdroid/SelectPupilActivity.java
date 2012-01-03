@@ -72,7 +72,7 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 				+ File.separator + "backup.xml";
 		File backupFile = new File(backupFilePath);
 		ExportUtils exportUtils = new ExportUtils(this);
-		if (exportUtils.isFirstRun() && backupFile.exists()) {
+		if (exportUtils.isFirstRun()) {
 			startImportDataActivity();
 			finish();
 		} else {
