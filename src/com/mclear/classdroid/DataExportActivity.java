@@ -16,7 +16,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.mclear.classdroid.bo.Post;
 import com.mclear.classdroid.bo.Pupil;
 import com.mclear.classdroid.bo.PupilServices;
 import com.mclear.classdroid.db.DBAdapter;
