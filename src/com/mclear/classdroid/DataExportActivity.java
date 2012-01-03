@@ -92,7 +92,9 @@ public class DataExportActivity extends Activity {
 	};
 
 	private void actionBackupComplete() {
-		showMessage("Data backup completed");
+		if (!isAuto) {
+			showMessage("Data backup completed");
+		}
 		setResult(RESULT_OK);
 		finish();
 	}
