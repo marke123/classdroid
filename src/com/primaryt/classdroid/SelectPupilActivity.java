@@ -1,6 +1,7 @@
 package com.primaryt.classdroid;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
@@ -65,18 +66,16 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 		initializeUIElemets();
 		reloadListView();
 		AppUtils util = new AppUtils(this);
-		String backupFilePath = Environment.getExternalStorageDirectory()
-				.getAbsolutePath()
-				+ File.separator
-				+ "classdroid"
-				+ File.separator + "backup.xml";
-		File backupFile = new File(backupFilePath);
 		ExportUtils exportUtils = new ExportUtils(this);
 		if (exportUtils.isFirstRun()) {
 			startImportDataActivity();
 			finish();
 		} else {
-			if (util.isFirstRun()) {
+			DBAdapter adapter = new DBAdapter(this);
+			adapter.open();
+			ArrayList<Pupil> pupils = adapter.getAllPupils();
+			adapter.close();
+			if (util.isFirstRun() && pupils.size() == 0) {
 				startGuidedTour();
 				finish();
 			} else {
