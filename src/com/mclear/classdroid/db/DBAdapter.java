@@ -255,7 +255,7 @@ public class DBAdapter {
 		ArrayList<PupilServices> services = new ArrayList<PupilServices>();
 		Cursor cursor = sqlDB.query(IDBConstants.TABLE_PUPIL_SERVICES, null,
 				null, null, null, null, null);
-		if (cursor.moveToNext()) {
+		while (cursor.moveToNext()) {
 			PupilServices service = new PupilServices();
 			service.setId(cursor.getLong(cursor
 					.getColumnIndex(IDBConstants.COL_KEY_ROW)));
