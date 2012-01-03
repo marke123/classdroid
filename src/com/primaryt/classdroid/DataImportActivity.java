@@ -1,19 +1,29 @@
 package com.primaryt.classdroid;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import com.primaryt.classdroid.bo.Pupil;
+import com.primaryt.classdroid.bo.PupilServices;
 
 public class DataImportActivity extends Activity {
 	private final static String TAG = "DataImportActivity";
@@ -75,24 +85,39 @@ public class DataImportActivity extends Activity {
 				+ File.separator
 				+ "classdroid"
 				+ File.separator + "backup.xml";
-		StringBuffer stringBuffer = new StringBuffer();
+
+		ArrayList<Pupil> pupils = new ArrayList<Pupil>();
+		ArrayList<PupilServices> services = new ArrayList<PupilServices>();
+
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(new File(
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document document = builder.parse(new FileInputStream(new File(
 					localFilePath)));
-			char[] buffer = new char[1024];
-			int numRead = 0;
-			while ((numRead = reader.read(buffer)) != -1) {
-				String readData = String.valueOf(buffer, 0, numRead);
-				stringBuffer.append(readData);
-				buffer = new char[1024];
+
+			Element element = document.getDocumentElement();
+			NodeList nodelist = element.getChildNodes();
+
+			Element pupilsElement = (Element) nodelist.item(0);
+			Element pupilServicesElement = (Element) nodelist.item(1);
+
+			NodeList listPupils = pupilsElement.getChildNodes();
+			NodeList listServices = pupilServicesElement.getChildNodes();
+
+			for (int i = 0; i < listPupils.getLength(); i++) {
+				Element p1 = (Element) listPupils.item(i);
+				Pupil p = new Pupil();
 			}
-			reader.close();
-		} catch (FileNotFoundException e) {
+
+			for (int i = 0; i < listServices.getLength(); i++) {
+
+			}
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		Log.i(TAG, stringBuffer.toString());
 	}
 }
