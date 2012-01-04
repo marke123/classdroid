@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -67,7 +70,7 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 		reloadListView();
 		AppUtils util = new AppUtils(this);
 		ExportUtils exportUtils = new ExportUtils(this);
-		if (exportUtils.isFirstRun()) {
+		if (exportUtils.isFirstRun() && isBetaVersionInstalled()) {
 			startImportDataActivity();
 			finish();
 		} else {
@@ -290,6 +293,21 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 				finish();
 			}
 		}
+	}
+
+	private boolean isBetaVersionInstalled() {
+		boolean value = false;
+		PackageManager pManager = getPackageManager();
+		try {
+			ApplicationInfo info = pManager.getApplicationInfo(
+					"com.mclear.classdroid", PackageManager.GET_META_DATA);
+			if (info != null) {
+				value = true;
+			}
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		return value;
 	}
 
 }
