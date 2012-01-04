@@ -78,5 +78,5 @@
 	<string name="lab_post_uploaded">Assignment successfully uploaded</string>
 <string name="lab_assignment_uploaded">Assignment successfully posted</string>
 <string name="lab_export">Export now</string>
-<string name="lab_message_export_data">There is a new version of Classdroid available in the Android Market. We request you to please uninstall this beta version and use the new Classdroid from the market. To make this transition easier, there is an option to export your data so that you could easily import it into the new version. If you want to export your data now, please tap on \&quot;Export Now\&quot;.</string>
+<string name="lab_message_export_data">There is a new version of Classdroid available in the Android Market. We request you to please uninstall this beta version and use the new Classdroid app from the market. To make this transition easier, there is an option to export your data so that you could easily import it into the new version. If you want to export your data now, please tap on \&quot;Export Now\&quot;.</string>
 </resources>
