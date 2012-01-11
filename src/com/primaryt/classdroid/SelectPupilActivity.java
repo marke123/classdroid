@@ -68,6 +68,10 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 
 		initializeUIElemets();
 		reloadListView();
+		checkWhatToDo();
+	}
+	
+	private void checkWhatToDo(){
 		AppUtils util = new AppUtils(this);
 		ExportUtils exportUtils = new ExportUtils(this);
 		if (exportUtils.isFirstRun() && isBetaVersionInstalled()) {
@@ -90,11 +94,13 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 	private void startImportDataActivity() {
 		Intent intent = new Intent(this, DataImportActivity.class);
 		startActivity(intent);
+		finish();
 	}
 
 	private void startGuidedTour() {
 		Intent intent = new Intent(this, GuidedTour_0.class);
 		startActivity(intent);
+		finish();
 	}
 
 	private void startCamera() {

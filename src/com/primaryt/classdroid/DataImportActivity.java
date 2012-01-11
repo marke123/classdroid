@@ -47,6 +47,8 @@ public class DataImportActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				Intent intent = new Intent(DataImportActivity.this, SelectPupilActivity.class);
+				startActivity(intent);
 				finish();
 			}
 		});
