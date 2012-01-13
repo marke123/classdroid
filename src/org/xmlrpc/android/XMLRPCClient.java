@@ -365,8 +365,11 @@ public class XMLRPCClient {
 				serializer.endTag(null, TAG_METHOD_CALL);
 				serializer.endDocument();
 				
+				String body = bodyWriter.toString();
+				body = body.replaceAll("style=\"display:block;margin-right:auto;margin-left:auto;\"", "class=\"alignnone\"");
+				
 				HttpEntity entity = new StringEntity(bodyWriter.toString());
-				Log.i("WordPress", bodyWriter.toString());
+				Log.i("WordPress", body);
 				postMethod.setEntity(entity);
 			}
 
