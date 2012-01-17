@@ -8,6 +8,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 
 import com.primaryt.classdroid.R;
 import com.primaryt.classdroid.bo.Post;
@@ -17,13 +18,18 @@ import com.primaryt.classdroid.db.DBAdapter;
 import com.primaryt.classdroid.services.ClassdroidService;
 
 public class UploaderThread extends Thread {
-    private long postId;
+    public static final int MESSAGE_DONE = 2;
+
+	private long postId;
 
     private Context context;
+    
+    private Handler handler;
 
-    public UploaderThread(long postId, Context context) {
+    public UploaderThread(long postId, Context context, Handler handler) {
         this.postId = postId;
         this.context = context;
+        this.handler = handler;
     }
 
     @Override
@@ -78,6 +84,7 @@ public class UploaderThread extends Thread {
             nManager.notify((int) (R.string.app_name + postId), notification);
         } finally {
             dbAdapter.close();
+            handler.sendEmptyMessage(MESSAGE_DONE);
         }
     }
 
