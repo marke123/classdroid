@@ -165,15 +165,15 @@ public class WebUtils {
 		}
 		
 		StringBuilder builder = new StringBuilder();
-		builder.append("<div style=\"text-align:center;\">");
+		builder.append("[caption id=\"attachment_200\" ");
+		builder.append("align=\"aligncenter\" width=\""+bmpWidth+"\" ");
+		builder.append("caption=\""+"Sample caption"+"\"]");
 		builder.append("<a href=\""+imageURL+"\">");
 		builder.append("<img src=\""+imageURL+"\" ");
+		builder.append("class=\"size-full wp-image-200\" title=\"6bw\" ");
 		builder.append("style=\"width:"+bmpWidth+"px;height:"+bmpHeight+"px\"></a>");
-		builder.append("</div>");
+		builder.append("[/caption]");
 		
-		// <a href="http://fullimagelink.com/etc.jpg"><img
-		// src="http://fullimagelink.com/etc.jpg"
-		// style="width:(value set in options)px;height:(value set in options)px"></a>
 		return builder.toString();
 	}
 
