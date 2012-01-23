@@ -25,7 +25,7 @@ import com.primaryt.classdroid.bo.PupilServices;
 public class WebUtils {
 	@SuppressWarnings("unchecked")
 	public static String uploadPostToWordpress(Pupil pupil, String image,
-			String grade, PupilServices service, Context context)
+			String grade, PupilServices service, Context context, String note)
 			throws XMLRPCException {
 
 		// String categories = "";
@@ -48,7 +48,7 @@ public class WebUtils {
 		content.put("post_type", "post");
 		content.put("title", pupil.getName() + "'s work");
 		// content.put("title", "Assignment for " + pupil.getName());
-		content.put("description", prepareBodyOfPost(grade, imageURL, image));
+		content.put("description", prepareBodyOfPost(grade, imageURL, image, note));
 		/*
 		 * Vector<String> cats = new Vector<String>(); cats.add("classdroid");
 		 * cats.add("stuff"); cats.add("Kumar"); content.put("categories",
@@ -120,10 +120,10 @@ public class WebUtils {
 	}
 
 	private static String prepareBodyOfPost(String grade, String imageURL,
-			String image) {
+			String image, String note) {
 		StringBuffer body = new StringBuffer();
 
-		String imageTag = getImageTag(image, imageURL);
+		String imageTag = getImageTag(image, imageURL, note);
 
 		body.append(imageTag);
 		body.append("\nGrade for assignment : " + grade);
@@ -134,7 +134,7 @@ public class WebUtils {
 		return formattedString;
 	}
 
-	private static String getImageTag(String image, String imageURL) {
+	private static String getImageTag(String image, String imageURL, String note) {
 		Bitmap bitmap = BitmapFactory.decodeFile(image);
 		int bmpHeight = bitmap.getHeight();
 		int bmpWidth = bitmap.getWidth();
@@ -167,7 +167,7 @@ public class WebUtils {
 		StringBuilder builder = new StringBuilder();
 		builder.append("[caption id=\"attachment_200\" ");
 		builder.append("align=\"aligncenter\" width=\""+bmpWidth+"\" ");
-		builder.append("caption=\""+"Sample caption"+"\"]");
+		builder.append("caption=\""+note+"\"]");
 		builder.append("<a href=\""+imageURL+"\">");
 		builder.append("<img src=\""+imageURL+"\" ");
 		builder.append("class=\"size-full wp-image-200\" title=\"6bw\" ");

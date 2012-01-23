@@ -48,6 +48,11 @@ public class DBAdapter {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			if (oldVersion == 1 && newVersion == 2) {
+				// Add notes column to Posts table
+				db.execSQL("ALTER TABLE " + IDBConstants.TABLE_POSTS + " ADD "
+						+ IDBConstants.POST_NOTE + " text;");
+			}
 		}
 	}
 
@@ -68,9 +73,9 @@ public class DBAdapter {
 					.getColumnIndex(IDBConstants.COL_KEY_ROW)));
 			pupil.setName(cursor.getString(cursor
 					.getColumnIndex(IDBConstants.PUPIL_NAME)));
-			if(!pupil.getName().equals("")){
+			if (!pupil.getName().equals("")) {
 				pupils.add(pupil);
-			}else{
+			} else {
 				trashPupil(pupil.getId());
 			}
 		}
@@ -78,34 +83,44 @@ public class DBAdapter {
 		return pupils;
 	}
 
-	private void trashPupil(long id){
+	private void trashPupil(long id) {
 		deletePupil(id);
 	}
+
 	public Post addPost(Post post) {
 		ContentValues values = new ContentValues();
 		values.put(IDBConstants.POST_PUPIL_ID, post.getPupilId());
 		values.put(IDBConstants.POST_IS_POSTED, post.getIsPosted());
-		values
-				.put(IDBConstants.POST_LOCAL_IMAGE_PATH, post
-						.getLocalImagePath());
+		values.put(IDBConstants.POST_LOCAL_IMAGE_PATH, post.getLocalImagePath());
 		values.put(IDBConstants.POST_RETURNED_STRING, post.getReturnedString());
 		values.put(IDBConstants.POST_TIMESTAMP, post.getTimestamp());
 		values.put(IDBConstants.POST_GRADE, post.getGrade());
+		values.put(IDBConstants.POST_NOTE, post.getNote());
 		post.setId(sqlDB.insert(IDBConstants.TABLE_POSTS, null, values));
 		return post;
 	}
-	
-	public Post getPostById(long postId){
+
+	public Post getPostById(long postId) {
 		Post post = new Post();
-		Cursor cursor = sqlDB.query(IDBConstants.TABLE_POSTS, null, IDBConstants.COL_KEY_ROW+"="+postId, null, null, null, null);
-		while(cursor.moveToNext()){
+		Cursor cursor = sqlDB
+				.query(IDBConstants.TABLE_POSTS, null, IDBConstants.COL_KEY_ROW
+						+ "=" + postId, null, null, null, null);
+		while (cursor.moveToNext()) {
 			post.setId(postId);
-			post.setPupilId(cursor.getLong(cursor.getColumnIndex(IDBConstants.POST_PUPIL_ID)));
-			post.setIsPosted(cursor.getInt(cursor.getColumnIndex(IDBConstants.POST_IS_POSTED)));
-			post.setLocalImagePath(cursor.getString(cursor.getColumnIndex(IDBConstants.POST_LOCAL_IMAGE_PATH)));
-			post.setReturnedString(cursor.getString(cursor.getColumnIndex(IDBConstants.POST_RETURNED_STRING)));
-			post.setTimestamp(cursor.getString(cursor.getColumnIndex(IDBConstants.POST_TIMESTAMP)));
-			post.setGrade(cursor.getString(cursor.getColumnIndex(IDBConstants.POST_GRADE)));
+			post.setPupilId(cursor.getLong(cursor
+					.getColumnIndex(IDBConstants.POST_PUPIL_ID)));
+			post.setIsPosted(cursor.getInt(cursor
+					.getColumnIndex(IDBConstants.POST_IS_POSTED)));
+			post.setLocalImagePath(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_LOCAL_IMAGE_PATH)));
+			post.setReturnedString(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_RETURNED_STRING)));
+			post.setTimestamp(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_TIMESTAMP)));
+			post.setGrade(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_GRADE)));
+			post.setNote(cursor.getString(cursor
+					.getColumnIndex(IDBConstants.POST_NOTE)));
 		}
 		cursor.close();
 		return post;
@@ -149,8 +164,7 @@ public class DBAdapter {
 		values.put(IDBConstants.PSERV_PASSWORD, service.getPassword());
 		values.put(IDBConstants.PSERV_USEDEFAULT, service.getUseDefault());
 		sqlDB.update(IDBConstants.TABLE_PUPIL_SERVICES, values,
-				IDBConstants.COL_KEY_ROW + "=" + service.getId(),
-				null);
+				IDBConstants.COL_KEY_ROW + "=" + service.getId(), null);
 	}
 
 	public PupilServices addPupilService(PupilServices service) {

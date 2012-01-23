@@ -70,8 +70,8 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 		reloadListView();
 		checkWhatToDo();
 	}
-	
-	private void checkWhatToDo(){
+
+	private void checkWhatToDo() {
 		AppUtils util = new AppUtils(this);
 		ExportUtils exportUtils = new ExportUtils(this);
 		if (exportUtils.isFirstRun() && isBetaVersionInstalled()) {
@@ -85,8 +85,6 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 			if (util.isFirstRun() && pupils.size() == 0) {
 				startGuidedTour();
 				finish();
-			} else {
-				startCamera();
 			}
 		}
 	}
@@ -151,6 +149,12 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 				menu.add(getString(R.string.lab_delete));
 			}
 		});
+	}
+
+	private void startDashboardActivity() {
+		Intent intent = new Intent(this, DashboardActivity.class);
+		intent.putExtra("pupil", pupilId);
+		startActivity(intent);
 	}
 
 	private void reloadListView() {
@@ -218,10 +222,7 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 			int position, long index) {
 		pupilId = view.getId();
 		if (checkServices()) {
-			Intent intent = new Intent(this, GradeActivity.class);
-			intent.putExtra("image", imagePath);
-			intent.putExtra("pupil", view.getId());
-			startActivityForResult(intent, GRADE_ASSESSMENT);
+			startDashboardActivity();
 		} else {
 			Toast.makeText(this, getString(R.string.lab_configure_settings),
 					Toast.LENGTH_LONG).show();

@@ -48,7 +48,7 @@
             android:text="@string/lab_cancel" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonUploadNow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

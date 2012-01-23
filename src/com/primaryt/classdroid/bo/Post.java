@@ -8,6 +8,13 @@ public class Post {
 	private String returnedString;
 	private String timestamp;
 	private String grade;
+	private String note;
+	public String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
+	}
 	public long getId() {
 		return id;
 	}

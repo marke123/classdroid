@@ -2,7 +2,7 @@ package com.primaryt.classdroid.db;
 
 public interface IDBConstants {
 	public static final String DATABASE_NAME = "classdroid.db";
-	public static final int DATABASE_VERSION = 1;
+	public static final int DATABASE_VERSION = 2;
 	
 	// Tables
 	public static final String TABLE_PUPIL = "pupils";
@@ -24,6 +24,7 @@ public interface IDBConstants {
 	public static final String POST_RETURNED_STRING = "returned_string";
 	public static final String POST_TIMESTAMP = "timestamp";
 	public static final String POST_GRADE = "grade";
+	public static final String POST_NOTE = "note";
 	
 	// Columns for Table PUPIL_SERVICES
 	public static final String PSERV_PUPIL_ID = "pupil_id";
@@ -54,6 +55,7 @@ public interface IDBConstants {
 		+ IDBConstants.TABLE_POSTS + "(" + IDBConstants.COL_KEY_ROW + " integer primary key autoincrement,"
 		+ IDBConstants.POST_PUPIL_ID + " integer," + IDBConstants.POST_LOCAL_IMAGE_PATH + " text,"
 		+ IDBConstants.POST_RETURNED_STRING + " text," + IDBConstants.POST_IS_POSTED + " integer,"
+		+ IDBConstants.POST_NOTE + " text,"
 		+ IDBConstants.POST_TIMESTAMP + " text,"+IDBConstants.POST_GRADE+" text);";
 	
 	// Create Query for Pupil Services Table

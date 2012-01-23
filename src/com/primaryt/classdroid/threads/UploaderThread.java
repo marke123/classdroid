@@ -51,7 +51,7 @@ public class UploaderThread extends Thread {
                 if (service.getIsEnabled() == PupilServices.SERVICE_ENABLED) {
                     dbAdapter.open();
                     String url = WebUtils.uploadPostToWordpress(pupil, post.getLocalImagePath(), ""
-                            + post.getGrade(), service, context);
+                            + post.getGrade(), service, context, post.getNote());
                     post.setIsPosted(1);
                     post.setReturnedString(url);
                     dbAdapter.updatePost(post);

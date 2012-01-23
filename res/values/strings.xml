@@ -85,4 +85,6 @@
 <string name="lab_notes_help">Enter a note that will be displayed below the pupil\'s work after it has been uploaded to your blog of choice.</string>
 <string name="lab_hint_note">Enter your note here</string>
 <string name="lab_upload_now">Upload Now</string>
+<string name="lab_add_note">Add Note</string>
+<string name="lab_upload_without_note">Upload Without Note</string>
 </resources>
