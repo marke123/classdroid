@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -315,6 +317,44 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 			e.printStackTrace();
 		}
 		return value;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.app_menu, menu);
+
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent;
+		switch (item.getItemId()) {
+		case R.id.m_import:
+			intent = new Intent(this, DataImportActivity.class);
+			startActivity(intent);
+			break;
+		case R.id.m_edit_pupil:
+			addPupil();
+			break;
+		case R.id.m_settings:
+			break;
+		case R.id.m_tutorial:
+			intent = new Intent(this, GuidedTour_1.class);
+			startActivity(intent);
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		if (!isBetaVersionInstalled()) {
+			menu.removeItem(R.id.m_import);
+		}
+		menu.removeItem(R.id.m_settings);
+		return super.onPrepareOptionsMenu(menu);
 	}
 
 }

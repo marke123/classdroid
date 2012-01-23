@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/m_import"
+        android:title="@string/lab_import_menu"/>
+    <item
+        android:id="@+id/m_settings"
+        android:title="@string/lab_settings"/>
+    <item
+        android:id="@+id/m_edit_pupil"
+        android:title="@string/lab_edit_pupils"/>
+    <item
+        android:id="@+id/m_tutorial"
+        android:title="@string/lab_tutorial"/>
+
+</menu>
