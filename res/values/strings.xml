@@ -79,4 +79,10 @@
 <string name="lab_assignment_uploaded">Assignment successfully posted</string>
 <string name="lab_import">Import now</string>
 <string name="lab_message_import_data">This is the new version of Classdroid. Do you want to import your data from Classdroid Beta now?</string>
+<string name="lab_add_pupil">Add Pupil</string>
+<string name="lab_take_photo">Take Photo</string>
+<string name="lab_notes">Notes</string>
+<string name="lab_notes_help">Enter a note that will be displayed below the pupil\'s work after it has been uploaded to your blog of choice.</string>
+<string name="lab_hint_note">Enter your note here</string>
+<string name="lab_upload_now">Upload Now</string>
 </resources>
