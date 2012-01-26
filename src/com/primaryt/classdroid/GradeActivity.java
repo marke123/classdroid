@@ -1,20 +1,24 @@
 package com.primaryt.classdroid;
 
 import java.util.Calendar;
+import java.util.List;
 
-import com.primaryt.classdroid.bo.Post;
-import com.primaryt.classdroid.db.DBAdapter;
-import com.primaryt.classdroid.services.ClassdroidService;
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
+
+import com.primaryt.classdroid.bo.Post;
+import com.primaryt.classdroid.db.DBAdapter;
+import com.primaryt.classdroid.services.ClassdroidService;
 
 public class GradeActivity extends ClassdroidActivity implements
 		OnItemClickListener {
@@ -28,6 +32,8 @@ public class GradeActivity extends ClassdroidActivity implements
 	private int grade;
 	private String[] grades;
 	private String gradeString;
+	private ArrayAdapter<String> adapter;
+	private ListView listView;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -47,10 +53,10 @@ public class GradeActivity extends ClassdroidActivity implements
 	}
 
 	private void initializeUIElements() {
-		ListView listView = (ListView) findViewById(R.id.listViewGrades);
+		listView = (ListView) findViewById(R.id.listViewGrades);
 		listView.setOnItemClickListener(this);
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+		adapter = new MyArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_checked);
 		grades = getResources().getStringArray(R.array.array_grades);
 		for (String value : grades) {
@@ -82,6 +88,7 @@ public class GradeActivity extends ClassdroidActivity implements
 			int position, long index) {
 		grade = position;
 		gradeString = grades[grade];
+		adapter.notifyDataSetChanged();
 	}
 
 	private void startAddNoteActivity(String grade) {
@@ -104,7 +111,7 @@ public class GradeActivity extends ClassdroidActivity implements
 			}
 		}
 	}
-	
+
 	private void startUpload() {
 		Post post = new Post();
 		post.setIsPosted(0);
@@ -126,5 +133,47 @@ public class GradeActivity extends ClassdroidActivity implements
 		setResult(RESULT_OK);
 		finish();
 	}
+
+	private class MyArrayAdapter<String> extends ArrayAdapter<String> {
+
+		public MyArrayAdapter(Context context, int resource,
+				int textViewResourceId, List<String> objects) {
+			super(context, resource, textViewResourceId, objects);
+		}
+
+		public MyArrayAdapter(Context context, int resource,
+				int textViewResourceId, String[] objects) {
+			super(context, resource, textViewResourceId, objects);
+		}
+
+		public MyArrayAdapter(Context context, int resource,
+				int textViewResourceId) {
+			super(context, resource, textViewResourceId);
+		}
+
+		public MyArrayAdapter(Context context, int textViewResourceId,
+				List<String> objects) {
+			super(context, textViewResourceId, objects);
+		}
+
+		public MyArrayAdapter(Context context, int textViewResourceId,
+				String[] objects) {
+			super(context, textViewResourceId, objects);
+		}
+
+		public MyArrayAdapter(Context context, int textViewResourceId) {
+			super(context, textViewResourceId);
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View view = super.getView(position, convertView, parent);
+
+			CheckedTextView textView = (CheckedTextView) view;
+			textView.setChecked(position == grade);
+			return view;
+		}
+
+	};
 
 }

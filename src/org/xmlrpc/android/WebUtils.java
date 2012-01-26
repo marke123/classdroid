@@ -170,7 +170,7 @@ public class WebUtils {
 		builder.append("caption=\""+note+"\"]");
 		builder.append("<a href=\""+imageURL+"\">");
 		builder.append("<img src=\""+imageURL+"\" ");
-		builder.append("class=\"size-full wp-image-200\" title=\"6bw\" ");
+		builder.append("class=\"size-full wp-image-200\" title=\"Uploaded from Classdroid\" ");
 		builder.append("style=\"width:"+bmpWidth+"px;height:"+bmpHeight+"px\"></a>");
 		builder.append("[/caption]");
 		

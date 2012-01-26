@@ -280,21 +280,6 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 	}
 
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		boolean value = false;
-		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-			value = true;
-			if (!TextUtils.isEmpty(imagePath)) {
-				ConfirmDialog dialog = new ConfirmDialog(this);
-				dialog.setTitle("Confirm action");
-				dialog.setOnDismissListener(this);
-				dialog.show();
-			}
-		}
-		return value;
-	}
-
-	@Override
 	public void onDismiss(DialogInterface arg0) {
 		if (arg0 instanceof ConfirmDialog) {
 			ConfirmDialog dia = (ConfirmDialog) arg0;

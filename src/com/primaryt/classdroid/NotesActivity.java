@@ -18,7 +18,7 @@ public class NotesActivity extends Activity {
 	private String imagePath;
 	private String grade;
 	private int pupilId;
-	private String note = "";
+	private String note = " ";
 
 	/** Called when the activity is first created. */
 	@Override
