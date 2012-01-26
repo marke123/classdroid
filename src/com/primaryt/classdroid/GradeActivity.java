@@ -87,7 +87,6 @@ public class GradeActivity extends ClassdroidActivity implements
 	public void onItemClick(AdapterView<?> adapterView, View view,
 			int position, long index) {
 		grade = position;
-		gradeString = grades[grade];
 		adapter.notifyDataSetChanged();
 	}
 
@@ -113,6 +112,7 @@ public class GradeActivity extends ClassdroidActivity implements
 	}
 
 	private void startUpload() {
+		gradeString = grades[grade];
 		Post post = new Post();
 		post.setIsPosted(0);
 		post.setLocalImagePath(imagePath);
