@@ -1,6 +1,5 @@
 package com.primaryt.classdroid;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +15,7 @@ import com.primaryt.classdroid.bo.Pupil;
 import com.primaryt.classdroid.bo.PupilServices;
 import com.primaryt.classdroid.db.DBAdapter;
 
-public class EditPupilActivity extends Activity {
+public class EditPupilActivity extends ClassdroidActivity {
 
 	private int pupilId;
 	private Pupil pupil;
@@ -63,18 +62,18 @@ public class EditPupilActivity extends Activity {
 		dbAdapter.close();
 	}
 
-	private void saveAction(){
-		if(cbImageToPortfolio.isChecked()){
+	private void saveAction() {
+		if (cbImageToPortfolio.isChecked()) {
 			servicePrimaryBlogger.setIsEnabled(PupilServices.SERVICE_ENABLED);
-		}else{
+		} else {
 			servicePrimaryBlogger.setIsEnabled(PupilServices.SERVICE_DISABLED);
 		}
-		if(cbXPArena.isChecked()){
+		if (cbXPArena.isChecked()) {
 			serviceXPArena.setIsEnabled(PupilServices.SERVICE_ENABLED);
-		}else{
+		} else {
 			serviceXPArena.setIsEnabled(PupilServices.SERVICE_DISABLED);
 		}
-		
+
 		pupil.setName(editName.getText().toString());
 		DBAdapter dbAdapter = new DBAdapter(this);
 		dbAdapter.open();
@@ -83,6 +82,14 @@ public class EditPupilActivity extends Activity {
 		dbAdapter.updatePupilService(serviceXPArena);
 		dbAdapter.close();
 	}
+
+	private void deleteAction() {
+		DBAdapter dbAdapter = new DBAdapter(this);
+		dbAdapter.open();
+		dbAdapter.deletePupil(pupilId);
+		dbAdapter.close();
+	}
+
 	private void initializeUIElements() {
 		editName = (EditText) findViewById(R.id.editName);
 		editName.setText(pupil.getName());
@@ -93,7 +100,8 @@ public class EditPupilActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				saveAction();
-				Toast.makeText(EditPupilActivity.this, getString(R.string.lab_pupil_updated),
+				Toast.makeText(EditPupilActivity.this,
+						getString(R.string.lab_pupil_updated),
 						Toast.LENGTH_LONG).show();
 				finish();
 			}
@@ -103,6 +111,20 @@ public class EditPupilActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				finish();
+			}
+		});
+
+		Button btnDelete = (Button) findViewById(R.id.btnDelete);
+		btnDelete.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				deleteAction();
+				setResult(RESULT_OK);
+				Toast.makeText(EditPupilActivity.this,
+						getString(R.string.lab_pupil_deleted),
+						Toast.LENGTH_LONG).show();
 				finish();
 			}
 		});
@@ -124,9 +146,7 @@ public class EditPupilActivity extends Activity {
 									.setIsEnabled(PupilServices.SERVICE_ENABLED);
 							Intent intent = new Intent(EditPupilActivity.this,
 									PrimaryBloggerActivity.class);
-							intent
-									.putExtra("id", servicePrimaryBlogger
-											.getId());
+							intent.putExtra("id", servicePrimaryBlogger.getId());
 							intent.putExtra("edit", true);
 							startActivityForResult(intent,
 									REQ_IMAGE_TO_PORTFOLIO);
@@ -170,26 +190,25 @@ public class EditPupilActivity extends Activity {
 			}
 		});
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(requestCode == REQ_IMAGE_TO_PORTFOLIO){
-			if(resultCode == RESULT_CANCELED){
-				servicePrimaryBlogger.setIsEnabled(PupilServices.SERVICE_DISABLED);
+		if (requestCode == REQ_IMAGE_TO_PORTFOLIO) {
+			if (resultCode == RESULT_CANCELED) {
+				servicePrimaryBlogger
+						.setIsEnabled(PupilServices.SERVICE_DISABLED);
 				cbImageToPortfolio.setChecked(false);
-				DBAdapter dbAdapter = new DBAdapter(
-						EditPupilActivity.this);
+				DBAdapter dbAdapter = new DBAdapter(EditPupilActivity.this);
 				dbAdapter.open();
 				dbAdapter.updatePupilService(servicePrimaryBlogger);
 				dbAdapter.close();
 			}
 		}
-		if(requestCode == REQ_XPARENA_CONFIG){
-			if(resultCode == RESULT_CANCELED){
+		if (requestCode == REQ_XPARENA_CONFIG) {
+			if (resultCode == RESULT_CANCELED) {
 				serviceXPArena.setIsEnabled(PupilServices.SERVICE_DISABLED);
 				cbXPArena.setChecked(false);
-				DBAdapter dbAdapter = new DBAdapter(
-						EditPupilActivity.this);
+				DBAdapter dbAdapter = new DBAdapter(EditPupilActivity.this);
 				dbAdapter.open();
 				dbAdapter.updatePupilService(serviceXPArena);
 				dbAdapter.close();

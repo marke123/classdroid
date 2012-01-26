@@ -1,45 +1,114 @@
-<RelativeLayout android:id="@+id/RelativeLayout01"
-	android:layout_width="fill_parent" android:layout_height="fill_parent"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:padding="5dip">
-	<TextView android:id="@+id/TextView01" android:layout_height="wrap_content"
-		android:text="@string/lab_name" android:layout_width="fill_parent"
-		android:textStyle="bold" android:layout_marginLeft="7dip"></TextView>
-	<EditText android:layout_below="@id/TextView01"
-		android:layout_height="wrap_content" android:layout_width="fill_parent"
-		android:id="@+id/editName" android:layout_marginLeft="5dip"
-		android:layout_marginRight="5dip"></EditText>
-	<TextView android:id="@+id/TextView02" android:layout_below="@id/editName"
-		android:layout_height="wrap_content" android:textStyle="bold"
-		android:text="@string/lab_publish" android:layout_width="fill_parent"
-		android:layout_marginLeft="7dip"></TextView>
-	<CheckBox android:layout_below="@id/TextView02"
-		android:layout_height="wrap_content" android:layout_width="fill_parent"
-		android:textStyle="bold" android:text="@string/lab_cb_portfolio"
-		android:layout_marginLeft="7dip" android:id="@+id/cbImageToPortfolio"></CheckBox>
-	<CheckBox android:layout_below="@id/cbImageToPortfolio"
-		android:layout_height="wrap_content" android:id="@+id/cbExpPoints"
-		android:textStyle="bold" android:layout_marginLeft="7dip"
-		android:layout_width="fill_parent" android:text="@string/lab_exp_points" android:visibility="gone"></CheckBox>
-	<LinearLayout android:id="@+id/LinearLayout01"
-		android:layout_below="@id/cbExpPoints" android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:orientation="vertical"
-		android:gravity="center_horizontal|bottom">
-		<Button android:layout_height="wrap_content"
-			android:layout_width="210dip" android:text="@string/lab_edit_pupil"
-			android:id="@+id/btnEditAdd" android:visibility="invisible"></Button>
-		<Button android:layout_height="wrap_content"
-			android:layout_width="210dip" android:text="@string/lab_save_add_another"
-			android:id="@+id/btnSaveAdd" android:visibility="invisible"></Button>
-		<LinearLayout android:id="@+id/LinearLayout02"
-			android:layout_height="wrap_content" android:layout_width="fill_parent"
-			android:gravity="center_horizontal">
-			<Button android:layout_height="wrap_content" android:text="@string/lab_save"
-				android:layout_width="105dip" android:id="@+id/btnSave"
-				android:textStyle="bold"></Button>
-			<Button android:layout_height="wrap_content" android:text="@string/lab_cancel"
-				android:layout_width="105dip" android:id="@+id/btnCancel"
-				android:textStyle="bold"></Button>
-		</LinearLayout>
-	</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="5dip" >
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dip"
+        android:text="@string/lab_name"
+        android:textStyle="bold" >
+    </TextView>
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextView01"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editName"
+        android:layout_marginLeft="7dip"
+        android:text="@string/lab_publish"
+        android:textStyle="bold" >
+    </TextView>
+
+    <CheckBox
+        android:id="@+id/cbImageToPortfolio"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextView02"
+        android:layout_marginLeft="7dip"
+        android:text="@string/lab_cb_portfolio"
+        android:textStyle="bold" >
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/cbExpPoints"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cbImageToPortfolio"
+        android:layout_marginLeft="7dip"
+        android:text="@string/lab_exp_points"
+        android:textStyle="bold"
+        android:visibility="gone" >
+    </CheckBox>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/cbExpPoints"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btnEditAdd"
+            android:layout_width="210dip"
+            android:layout_height="wrap_content"
+            android:text="@string/lab_edit_pupil"
+            android:visibility="invisible" >
+        </Button>
+
+        <Button
+            android:id="@+id/btnSaveAdd"
+            android:layout_width="210dip"
+            android:layout_height="wrap_content"
+            android:text="@string/lab_save_add_another"
+            android:visibility="invisible" >
+        </Button>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lab_save"
+                android:textStyle="bold" >
+            </Button>
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lab_delete"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/lab_cancel"
+                android:textStyle="bold" >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
 </RelativeLayout>

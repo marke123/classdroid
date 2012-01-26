@@ -2,6 +2,7 @@ package com.primaryt.classdroid.adapters;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.primaryt.classdroid.EditPupilActivity;
 import com.primaryt.classdroid.R;
+import com.primaryt.classdroid.SelectPupilActivity;
 import com.primaryt.classdroid.bo.Pupil;
 
 public class PupilAdapter extends BaseAdapter {
@@ -62,7 +64,8 @@ public class PupilAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				Intent intent = new Intent(context, EditPupilActivity.class);
 				intent.putExtra("id", v.getId());
-				context.startActivity(intent);
+				((Activity) context).startActivityForResult(intent,
+						SelectPupilActivity.REQ_EDIT_PUPIL);
 			}
 		});
 

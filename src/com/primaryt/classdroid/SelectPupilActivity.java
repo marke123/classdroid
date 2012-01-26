@@ -13,11 +13,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -51,6 +49,8 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 	private final static int GRADE_ASSESSMENT = 2;
 
 	private final static int REQ_ADD_PUPIL = 3;
+
+	public final static int REQ_EDIT_PUPIL = 14;
 
 	private int pupilId;
 
@@ -175,6 +175,7 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.i(TAG, "Request code(On Activity Result) - " + requestCode);
 		if (requestCode == TAKE_PICTURE) {
 			if (resultCode == RESULT_OK) {
 				imagePath = file.getAbsolutePath();
@@ -215,6 +216,10 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 				Toast.makeText(SelectPupilActivity.this,
 						getString(R.string.lab_action_cancelled),
 						Toast.LENGTH_LONG).show();
+			}
+		} else if (requestCode == REQ_EDIT_PUPIL) {
+			if (resultCode == RESULT_OK) {
+				reloadListView();
 			}
 		}
 	}
@@ -258,7 +263,7 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 		Intent intent = new Intent(SelectPupilActivity.this,
 				EditPupilActivity.class);
 		intent.putExtra("id", pupilId);
-		startActivity(intent);
+		startActivityForResult(intent, REQ_EDIT_PUPIL);
 	}
 
 	private boolean checkServices() {
