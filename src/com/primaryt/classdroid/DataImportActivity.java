@@ -100,6 +100,11 @@ public class DataImportActivity extends Activity {
 	}
 
 	private void retrieveBackupDataAndImport() {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		String localFilePath = Environment.getExternalStorageDirectory()
 				.getAbsolutePath()
 				+ File.separator
