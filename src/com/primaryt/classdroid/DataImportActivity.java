@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.primaryt.classdroid.bo.Pupil;
 import com.primaryt.classdroid.bo.PupilServices;
 import com.primaryt.classdroid.db.DBAdapter;
+import com.primaryt.classdroid.utils.ExportUtils;
 
 public class DataImportActivity extends Activity {
 	private final static String TAG = "DataImportActivity";
@@ -90,6 +91,8 @@ public class DataImportActivity extends Activity {
 			retrieveBackupDataAndImport();
 			Toast.makeText(this, "Data import complete", Toast.LENGTH_LONG)
 					.show();
+			ExportUtils utils = new ExportUtils(this);
+			utils.setImportComplete(true);
 			Intent intent = new Intent(this, SelectPupilActivity.class);
 			startActivity(intent);
 			finish();

@@ -343,6 +343,10 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 		if (!isBetaVersionInstalled()) {
 			menu.removeItem(R.id.m_import);
 		}
+		ExportUtils utils = new ExportUtils(this);
+		if(utils.isImportComplete()){
+			menu.removeItem(R.id.m_import);
+		}
 		menu.removeItem(R.id.m_settings);
 		return super.onPrepareOptionsMenu(menu);
 	}

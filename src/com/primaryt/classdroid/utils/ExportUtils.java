@@ -9,6 +9,8 @@ public class ExportUtils {
     private final static String PREF_FILE = "export";
 
     private final static String FIRST_RUN = "first_run";
+    
+    private final static String IMPORT_COMPLETE = "import_complete";
 
     private SharedPreferences preferences;
 
@@ -25,5 +27,15 @@ public class ExportUtils {
             editor.commit();
         }
         return isFirstRun;
+    }
+    
+    public boolean isImportComplete(){
+    	return preferences.getBoolean(IMPORT_COMPLETE, false);
+    }
+    
+    public void setImportComplete(boolean value){
+    	Editor editor = preferences.edit();
+    	editor.putBoolean(IMPORT_COMPLETE, value);
+    	editor.commit();
     }
 }

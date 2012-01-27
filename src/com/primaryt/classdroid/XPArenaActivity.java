@@ -223,3 +223,4 @@ public class XPArenaActivity extends ClassdroidActivity implements OnDismissList
 	}
 
 }
+
