@@ -48,7 +48,8 @@ public class WebUtils {
 		content.put("post_type", "post");
 		content.put("title", pupil.getName() + "'s work");
 		// content.put("title", "Assignment for " + pupil.getName());
-		content.put("description", prepareBodyOfPost(grade, imageURL, image, note));
+		content.put("description",
+				prepareBodyOfPost(grade, imageURL, image, note));
 		/*
 		 * Vector<String> cats = new Vector<String>(); cats.add("classdroid");
 		 * cats.add("stuff"); cats.add("Kumar"); content.put("categories",
@@ -163,17 +164,17 @@ public class WebUtils {
 				bmpWidth = bmpNewWidth;
 			}
 		}
-		
+
 		StringBuilder builder = new StringBuilder();
-		builder.append("[caption id=\"attachment_200\" ");
-		builder.append("align=\"aligncenter\" width=\""+bmpWidth+"\" ");
-		builder.append("caption=\""+note+"\"]");
-		builder.append("<a href=\""+imageURL+"\">");
-		builder.append("<img src=\""+imageURL+"\" ");
-		builder.append("class=\"size-full wp-caption wp-image-200\" title=\"Uploaded from Classdroid\" ");
-		builder.append("style=\"width:"+bmpWidth+"px;height:"+bmpHeight+"px\"></a>");
-		builder.append("[/caption]");
-		
+		builder.append("<div id=\"attachment_classdroid\" class=\"wp-caption aligncenter\"");
+		builder.append(" style=\"width: " + (bmpWidth + 10) + "px\">");
+		builder.append("<a href=\"" + imageURL + "\">");
+		builder.append("<img src=\"" + imageURL + "\" ");
+		builder.append("class=\"size-full wp-caption wp-image-classdroid\" title=\"Uploaded from Classdroid\" ");
+		builder.append("style=\"width:" + bmpWidth + "px;height:" + bmpHeight
+				+ "px\"></a>");
+		builder.append("<p class=\"wp-caption-text\">" + note + "</p></div>");
+
 		return builder.toString();
 	}
 
