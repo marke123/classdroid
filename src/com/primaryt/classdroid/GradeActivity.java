@@ -78,6 +78,7 @@ public class GradeActivity extends ClassdroidActivity implements
 
 			@Override
 			public void onClick(View v) {
+				gradeString = grades[grade];
 				startAddNoteActivity(gradeString);
 			}
 		});
