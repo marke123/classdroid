@@ -331,7 +331,7 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 		case R.id.m_settings:
 			break;
 		case R.id.m_tutorial:
-			intent = new Intent(this, GuidedTour_1.class);
+			intent = new Intent(this, TutorialActivity_1.class);
 			startActivity(intent);
 			break;
 		}
