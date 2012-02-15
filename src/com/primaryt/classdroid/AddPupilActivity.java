@@ -131,7 +131,11 @@ public class AddPupilActivity extends ClassdroidActivity {
             }
         });
 
+        // Issue (Feature request)
+        // https://github.com/johnyma22/classdroid/issues/3
+        
         cbImageToPortfolio = (CheckBox) findViewById(R.id.cbImageToPortfolio);
+        cbImageToPortfolio.setVisibility(View.GONE);
 
         cbImageToPortfolio
                 .setChecked(servicePrimaryBlogger.getIsEnabled() == PupilServices.SERVICE_ENABLED ? true

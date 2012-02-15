@@ -130,6 +130,11 @@ public class EditPupilActivity extends ClassdroidActivity {
 		});
 
 		cbImageToPortfolio = (CheckBox) findViewById(R.id.cbImageToPortfolio);
+		
+		 // Issue (Feature request)
+        // https://github.com/johnyma22/classdroid/issues/3
+        cbImageToPortfolio.setVisibility(View.GONE);
+        
 		if (servicePrimaryBlogger.getIsEnabled() == PupilServices.SERVICE_ENABLED) {
 			cbImageToPortfolio.setChecked(true);
 		} else {

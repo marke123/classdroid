@@ -29,7 +29,8 @@
         android:layout_below="@id/editName"
         android:layout_marginLeft="7dip"
         android:text="@string/lab_publish"
-        android:textStyle="bold" >
+        android:textStyle="bold"
+        android:visibility="gone" >
     </TextView>
 
     <CheckBox

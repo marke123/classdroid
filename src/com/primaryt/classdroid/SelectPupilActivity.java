@@ -329,6 +329,8 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 			addPupil();
 			break;
 		case R.id.m_settings:
+			intent = new Intent(this, PrimaryBloggerActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.m_tutorial:
 			intent = new Intent(this, TutorialActivity_1.class);
@@ -347,7 +349,6 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 		if(utils.isImportComplete()){
 			menu.removeItem(R.id.m_import);
 		}
-		menu.removeItem(R.id.m_settings);
 		return super.onPrepareOptionsMenu(menu);
 	}
 

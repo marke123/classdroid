@@ -24,6 +24,12 @@ public class AppUtils {
     private static final String IS_FIRST_RUN = "is_first_run";
 
     private final static String SHARED_PREFS = "settings";
+    
+    private final static String NEW_URL = "new_url";
+    
+    private final static String NEW_USERNAME = "new_username";
+    
+    private final static String NEW_PASSWORD = "new_password";
 
     private SharedPreferences prefs;
 
@@ -89,5 +95,35 @@ public class AppUtils {
 
     public boolean isFirstRun() {
         return prefs.getBoolean(IS_FIRST_RUN, true);
+    }
+    
+    public String getNewURL(){
+    	return prefs.getString(NEW_URL, "http://demopupil.primaryblogger.co.uk/");
+    }
+    
+    public String getNewUsername(){
+    	return prefs.getString(NEW_USERNAME, null);
+    }
+    
+    public String getNewPassword(){
+    	return prefs.getString(NEW_PASSWORD, null);
+    }
+    
+    public void setNewURL(String url){
+    	Editor edit = prefs.edit();
+    	edit.putString(NEW_URL, url);
+    	edit.commit();
+    }
+    
+    public void setNewUsername(String username){
+    	Editor edit = prefs.edit();
+    	edit.putString(NEW_USERNAME, username);
+    	edit.commit();
+    }
+    
+    public void setNewPassword(String password){
+    	Editor edit = prefs.edit();
+    	edit.putString(NEW_PASSWORD, password);
+    	edit.commit();
     }
 }

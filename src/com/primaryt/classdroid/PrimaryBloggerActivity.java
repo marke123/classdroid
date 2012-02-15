@@ -17,8 +17,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.primaryt.classdroid.bo.PupilServices;
-import com.primaryt.classdroid.db.DBAdapter;
 import com.primaryt.classdroid.temp.AppUtils;
 import com.primaryt.classdroid.threads.WPLoginCheckThread;
 
@@ -33,12 +31,6 @@ public class PrimaryBloggerActivity extends ClassdroidActivity implements
 
 	private EditText editPassword;
 
-	private long id;
-
-	private PupilServices service;
-
-	private boolean edit;
-
 	private WPLoginCheckThread thread;
 
 	private Button btnSave;
@@ -50,40 +42,19 @@ public class PrimaryBloggerActivity extends ClassdroidActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.primarybloggerconfiguration);
-
-		Bundle bundle = getIntent().getExtras();
-		if (bundle != null) {
-			if (bundle.containsKey("id")) {
-				id = bundle.getLong("id");
-				DBAdapter dbAdapter = new DBAdapter(this);
-				dbAdapter.open();
-				service = dbAdapter.getPupilServicesById(id);
-				dbAdapter.close();
-			}
-			if (bundle.containsKey("edit")) {
-				edit = bundle.getBoolean("edit");
-			}
-		}
-
 		initializeUIElements();
-		if (edit) {
-			populate();
-		}
+		populate();
 	}
 
 	private void populate() {
-		if (service.getUrl() != null) {
-			editURL.setText(service.getUrl());
+		AppUtils utils = new AppUtils(this);
+		if (utils.getNewURL() != null) {
+			editURL.setText(utils.getNewURL());
 		}
-		editUsername.setText(service.getUsername() == null ? "" : service
-				.getUsername());
-		editPassword.setText(service.getPassword() == null ? "" : service
-				.getPassword());
-		if (service.getUseDefault() == PupilServices.USE_DEFAULT) {
-			cbDefault.setChecked(true);
-		} else {
-			cbDefault.setChecked(false);
-		}
+		editUsername.setText(utils.getNewUsername() == null ? "" : utils
+				.getNewUsername());
+		editPassword.setText(utils.getNewPassword() == null ? "" : utils
+				.getNewPassword());
 	}
 
 	private void initializeUIElements() {
@@ -179,26 +150,12 @@ public class PrimaryBloggerActivity extends ClassdroidActivity implements
 
 	private void saveAction() {
 		AppUtils utils = new AppUtils(this);
-		service.setUrl(editURL.getText().toString().trim());
-		utils.setDefaultPrimaryURL(service.getUrl());
+		utils.setNewURL(editURL.getText().toString().trim());
 
-		if (!cbDefault.isChecked()) {
-			service.setUsername(editUsername.getText().toString());
-			service.setPassword(editPassword.getText().toString());
-			service.setUseDefault(PupilServices.USE_CUSTOM);
-			utils.setDefaultCredsPrimary(editUsername.getText().toString(),
-					editPassword.getText().toString());
-		} else {
-			service.setUsername(utils.getDefPriUser());
-			service.setPassword(utils.getDefPriPass());
-			service.setUseDefault(PupilServices.USE_DEFAULT);
-		}
-		if (!cbDefault.isChecked() && isUsernamePasswordOK()
-				|| cbDefault.isChecked() && isURLOK()) {
-			DBAdapter dbAdapter = new DBAdapter(this);
-			dbAdapter.open();
-			dbAdapter.updatePupilService(service);
-			dbAdapter.close();
+		utils.setNewUsername(editUsername.getText().toString().trim());
+		utils.setNewPassword(editPassword.getText().toString().trim());
+
+		if (isUsernamePasswordOK() && isURLOK()) {
 			setResult(RESULT_OK);
 			finish();
 		}

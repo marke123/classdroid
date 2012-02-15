@@ -92,6 +92,8 @@
 <string name="lab_edit_pupils">Edit Pupils</string>
 <string name="lab_tutorial">Tutorial</string>
 <string name="lab_back">Back</string>
+<string name="lab_added_pupils">Selected pupils</string>
+<string name="lab_add_another_pupil">Add another pupil</string>
 <string-array name="array_tutorial_headers">
     <item>
         Adding Pupils
