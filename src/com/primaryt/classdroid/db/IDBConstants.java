@@ -52,7 +52,7 @@ public interface IDBConstants {
 	
 	// Create Query for Posts Table
 	public static final String SQL_POSTS = "create table "
-		+ IDBConstants.TABLE_POSTS + "(" + IDBConstants.COL_KEY_ROW + " integer primary key autoincrement,"
+		+ IDBConstants.TABLE_POSTS + "(" + IDBConstants.COL_KEY_ROW + " integer,"
 		+ IDBConstants.POST_PUPIL_ID + " integer," + IDBConstants.POST_LOCAL_IMAGE_PATH + " text,"
 		+ IDBConstants.POST_RETURNED_STRING + " text," + IDBConstants.POST_IS_POSTED + " integer,"
 		+ IDBConstants.POST_NOTE + " text,"

@@ -1,4 +1,3 @@
-
 package com.primaryt.classdroid;
 
 import android.app.Activity;
@@ -11,32 +10,34 @@ import android.widget.Button;
 
 public class GuidedTour_2 extends Activity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.guided_tour_2);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.guided_tour_2);
 
-        Button btnProceed = (Button) findViewById(R.id.btnProceed);
-        btnProceed.setOnClickListener(new OnClickListener() {
+		Button btnProceed = (Button) findViewById(R.id.btnProceed);
+		btnProceed.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), DefaultConfigurationActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        
-        Button btnOptions = (Button)findViewById(R.id.btnOptions);
-        btnOptions.setOnClickListener(new OnClickListener() {
-            
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://crm.primaryt.co.uk/indexpb.php?registerpb"));
-                startActivity(intent);
-            }
-        });
-    }
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getBaseContext(),
+						DefaultConfigurationActivity.class);
+				startActivity(intent);
+				finish();
+			}
+		});
+
+		Button btnOptions = (Button) findViewById(R.id.btnOptions);
+		btnOptions.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(Uri
+						.parse("http://crm.primaryt.co.uk/indexpb.php?registerpb"));
+				startActivity(intent);
+			}
+		});
+	}
 
 }

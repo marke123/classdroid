@@ -35,6 +35,8 @@ public class DashboardActivity extends Activity {
 
 	private ArrayList<Pupil> pupils;
 	private int pupilId;
+	
+	private Button buttonAddPupil;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -56,7 +58,7 @@ public class DashboardActivity extends Activity {
 			}
 		});
 
-		Button buttonAddPupil = (Button) findViewById(R.id.buttonAddPupil);
+		buttonAddPupil = (Button) findViewById(R.id.buttonAddPupil);
 		buttonAddPupil.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -119,7 +121,11 @@ public class DashboardActivity extends Activity {
 	private void startGradeActivity() {
 		Intent intent = new Intent(this, GradeActivity.class);
 		intent.putExtra("image", imagePath);
-		intent.putExtra("pupil", pupilId);
+		ArrayList<String> pupilIDs = new ArrayList<String>();
+		for (Pupil p : pupils) {
+			pupilIDs.add(p.getId() + "");
+		}
+		intent.putExtra("pupils", pupilIDs);
 		startActivityForResult(intent, REQUEST_GRADE_ACTIVITY);
 	}
 
@@ -131,10 +137,16 @@ public class DashboardActivity extends Activity {
 
 			@Override
 			public void onDismiss(DialogInterface dialog) {
-				SelectPupilsDialog d = (SelectPupilsDialog)dialog;
+				SelectPupilsDialog d = (SelectPupilsDialog) dialog;
 				Pupil p = d.getSelectedPupil();
-				adapter.addPupil(p);
-				adapter.notifyDataSetChanged();
+				if (p != null) {
+					pupils.add(p);
+					adapter.addPupil(p);
+					adapter.notifyDataSetChanged();
+				}
+				if(adapter.getCount()==3){
+					buttonAddPupil.setEnabled(false);
+				}
 			}
 		});
 	}

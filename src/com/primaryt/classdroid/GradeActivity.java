@@ -1,7 +1,9 @@
 package com.primaryt.classdroid;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +36,7 @@ public class GradeActivity extends ClassdroidActivity implements
 	private String gradeString;
 	private ArrayAdapter<String> adapter;
 	private ListView listView;
+	private ArrayList<String> pupilIds;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -45,8 +48,8 @@ public class GradeActivity extends ClassdroidActivity implements
 		if (data.containsKey("image")) {
 			imagePath = data.getString("image");
 		}
-		if (data.containsKey("pupil")) {
-			pupilId = data.getInt("pupil");
+		if (data.containsKey("pupils")) {
+			pupilIds = data.getStringArrayList("pupils");
 		}
 
 		initializeUIElements();
@@ -95,7 +98,7 @@ public class GradeActivity extends ClassdroidActivity implements
 		Intent intent = new Intent(this, NotesActivity.class);
 		intent.putExtra("grade", grade);
 		intent.putExtra("image", imagePath);
-		intent.putExtra("pupil", pupilId);
+		intent.putExtra("pupils", pupilIds);
 		startActivityForResult(intent, REQUEST_ADD_NOTE);
 	}
 
@@ -114,22 +117,26 @@ public class GradeActivity extends ClassdroidActivity implements
 
 	private void startUpload() {
 		gradeString = grades[grade];
-		Post post = new Post();
-		post.setIsPosted(0);
-		post.setLocalImagePath(imagePath);
-		post.setPupilId(pupilId);
-		post.setTimestamp(Calendar.getInstance().toString());
-		post.setGrade(gradeString);
-		post.setNote("");
+		long randomID = (long) (Math.random()*100);
+		for (String pupilID : pupilIds) {
+			Post post = new Post();
+			post.setIsPosted(0);
+			post.setLocalImagePath(imagePath);
+			post.setPupilId(Long.parseLong(pupilID));
+			post.setTimestamp(Calendar.getInstance().toString());
+			post.setGrade(gradeString);
+			post.setNote("");
+			post.setId(randomID);
 
-		DBAdapter dbAdapter = new DBAdapter(this);
-		dbAdapter.open();
+			DBAdapter dbAdapter = new DBAdapter(this);
+			dbAdapter.open();
 
-		post = dbAdapter.addPost(post);
-		dbAdapter.close();
+			post = dbAdapter.addPost(post);
+			dbAdapter.close();
+		}
 
 		Intent service = new Intent(this, ClassdroidService.class);
-		service.putExtra("id", post.getId());
+		service.putExtra("id", randomID);
 		startService(service);
 		setResult(RESULT_OK);
 		finish();

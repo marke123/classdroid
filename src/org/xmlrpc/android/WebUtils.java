@@ -1,10 +1,9 @@
 package org.xmlrpc.android;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.http.HttpResponse;
@@ -24,13 +23,14 @@ import com.primaryt.classdroid.bo.PupilServices;
 
 public class WebUtils {
 	@SuppressWarnings("unchecked")
-	public static String uploadPostToWordpress(Pupil pupil, String image,
-			String grade, PupilServices service, Context context, String note)
+	public static String uploadPostToWordpress(ArrayList<Pupil> pupils,
+			String image, String grade, String url, Context context,
+			String note, String username, String password)
 			throws XMLRPCException {
 
 		// String categories = "";
 
-		String adjustedURL = service.getUrl();
+		String adjustedURL = url;
 		if (!adjustedURL.contains("http://")) {
 			adjustedURL = "http://" + adjustedURL;
 		}
@@ -39,14 +39,18 @@ public class WebUtils {
 
 		}
 
-		service.setUrl(adjustedURL);
+		String imageURL = uploadImage(image, adjustedURL, context, username, password);
 
-		String imageURL = uploadImage(image, service, context);
-
-		XMLRPCClient client = new XMLRPCClient(service.getUrl() + "xmlrpc.php");
+		XMLRPCClient client = new XMLRPCClient(adjustedURL + "xmlrpc.php");
 		HashMap<String, Object> content = new HashMap<String, Object>();
 		content.put("post_type", "post");
-		content.put("title", pupil.getName() + "'s work");
+		String pupilString = "";
+		for (Pupil p : pupils) {
+			pupilString = pupilString + p.getName() + " + ";
+		}
+
+		pupilString = pupilString.substring(0, pupilString.length() - 2);
+		content.put("title", pupilString + " " + "'s work");
 		// content.put("title", "Assignment for " + pupil.getName());
 		content.put("description",
 				prepareBodyOfPost(grade, imageURL, image, note));
@@ -55,15 +59,7 @@ public class WebUtils {
 		 * cats.add("stuff"); cats.add("Kumar"); content.put("categories",
 		 * cats);
 		 */
-		String username = "";
-		String password = "";
-		if (service.getUseDefault() == PupilServices.USE_DEFAULT) {
-			username = IConstants.USER1;
-			password = IConstants.PASS1;
-		} else {
-			username = service.getUsername();
-			password = service.getPassword();
-		}
+
 		Object[] params = { 1, username, password, content, true };
 
 		Object result = null;
@@ -74,13 +70,14 @@ public class WebUtils {
 		} catch (XMLRPCException e) {
 			throw e;
 		}
-		return getPostUrl(result.toString(), service.getUrl());
+		return getPostUrl(result.toString(), adjustedURL);
 	}
 
-	private static String uploadImage(String image, PupilServices service,
-			Context context) throws XMLRPCException {
+	private static String uploadImage(String image, String url,
+			Context context, String username, String password)
+			throws XMLRPCException {
 		String resultUrl = "";
-		XMLRPCClient client = new XMLRPCClient(service.getUrl() + "xmlrpc.php");
+		XMLRPCClient client = new XMLRPCClient(url + "xmlrpc.php");
 		String sXmlRpcMethod = "wp.uploadFile";
 
 		MediaFile mf = new MediaFile();
@@ -93,15 +90,6 @@ public class WebUtils {
 		m.put("type", mimeType);
 		m.put("bits", mf);
 		m.put("overwrite", true);
-		String username = "";
-		String password = "";
-		if (service.getUseDefault() == PupilServices.USE_DEFAULT) {
-			username = IConstants.USER1;
-			password = IConstants.PASS1;
-		} else {
-			username = service.getUsername();
-			password = service.getPassword();
-		}
 		Object[] params = { 1, username, password, m };
 
 		Object result = null;

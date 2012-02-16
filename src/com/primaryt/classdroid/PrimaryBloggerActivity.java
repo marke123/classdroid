@@ -69,15 +69,10 @@ public class PrimaryBloggerActivity extends ClassdroidActivity implements
 		editPassword = (EditText) findViewById(R.id.editTeacherPassword);
 
 		cbDefault = (CheckBox) findViewById(R.id.cbUseDefault);
-		if (TextUtils.isEmpty(utils.getDefPriUser())) {
-			cbDefault.setChecked(false);
-		}
-
-		if (cbDefault.isChecked()) {
-			showDefaultOptions();
-		} else {
-			showCustomOptions();
-		}
+		// if (TextUtils.isEmpty(utils.getDefPriUser())) {
+		// cbDefault.setChecked(false);
+		// }
+		showCustomOptions();
 		cbDefault.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override

@@ -1,5 +1,6 @@
 package com.primaryt.classdroid;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -19,6 +20,7 @@ public class NotesActivity extends Activity {
 	private String grade;
 	private int pupilId;
 	private String note = " ";
+	private ArrayList<String> pupilIds;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -30,8 +32,8 @@ public class NotesActivity extends Activity {
 		if (data.containsKey("image")) {
 			imagePath = data.getString("image");
 		}
-		if (data.containsKey("pupil")) {
-			pupilId = data.getInt("pupil");
+		if (data.containsKey("pupils")) {
+			pupilIds = data.getStringArrayList("pupils");
 		}
 		if (data.containsKey("grade")) {
 			grade = data.getString("grade");
@@ -61,22 +63,26 @@ public class NotesActivity extends Activity {
 	}
 
 	private void startUpload() {
-		Post post = new Post();
-		post.setIsPosted(0);
-		post.setLocalImagePath(imagePath);
-		post.setPupilId(pupilId);
-		post.setTimestamp(Calendar.getInstance().toString());
-		post.setGrade(grade);
-		post.setNote(note);
+		long randomID = (long) (Math.random()*100);
+		for (String pupilID : pupilIds) {
+			Post post = new Post();
+			post.setIsPosted(0);
+			post.setLocalImagePath(imagePath);
+			post.setPupilId(Long.parseLong(pupilID));
+			post.setTimestamp(Calendar.getInstance().toString());
+			post.setGrade(grade);
+			post.setNote(note);
+			post.setId(randomID);
 
-		DBAdapter dbAdapter = new DBAdapter(this);
-		dbAdapter.open();
+			DBAdapter dbAdapter = new DBAdapter(this);
+			dbAdapter.open();
 
-		post = dbAdapter.addPost(post);
-		dbAdapter.close();
+			post = dbAdapter.addPost(post);
+			dbAdapter.close();
+		}
 
 		Intent service = new Intent(this, ClassdroidService.class);
-		service.putExtra("id", post.getId());
+		service.putExtra("id", randomID);
 		startService(service);
 		setResult(RESULT_OK);
 		finish();

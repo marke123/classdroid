@@ -96,16 +96,20 @@ public class DBAdapter {
 		values.put(IDBConstants.POST_TIMESTAMP, post.getTimestamp());
 		values.put(IDBConstants.POST_GRADE, post.getGrade());
 		values.put(IDBConstants.POST_NOTE, post.getNote());
+		if (post.getId() > 0) {
+			values.put(IDBConstants.COL_KEY_ROW, post.getId());
+		}
 		post.setId(sqlDB.insert(IDBConstants.TABLE_POSTS, null, values));
 		return post;
 	}
 
-	public Post getPostById(long postId) {
-		Post post = new Post();
+	public ArrayList<Post> getPostsById(long postId) {
+		ArrayList<Post> posts = new ArrayList<Post>();
 		Cursor cursor = sqlDB
 				.query(IDBConstants.TABLE_POSTS, null, IDBConstants.COL_KEY_ROW
 						+ "=" + postId, null, null, null, null);
 		while (cursor.moveToNext()) {
+			Post post = new Post();
 			post.setId(postId);
 			post.setPupilId(cursor.getLong(cursor
 					.getColumnIndex(IDBConstants.POST_PUPIL_ID)));
@@ -121,9 +125,10 @@ public class DBAdapter {
 					.getColumnIndex(IDBConstants.POST_GRADE)));
 			post.setNote(cursor.getString(cursor
 					.getColumnIndex(IDBConstants.POST_NOTE)));
+			posts.add(post);
 		}
 		cursor.close();
-		return post;
+		return posts;
 	}
 
 	public Pupil getPupilById(long pupilId) {
@@ -257,5 +262,11 @@ public class DBAdapter {
 		values.put(IDBConstants.POST_GRADE, post.getGrade());
 		sqlDB.update(IDBConstants.TABLE_POSTS, values, IDBConstants.COL_KEY_ROW
 				+ "=" + post.getId(), null);
+	}
+
+	public void deletePost(long id) {
+		String whereClause = IDBConstants.COL_KEY_ROW + " = ?";
+		String[] whereArgs = { id + "" };
+		sqlDB.delete(IDBConstants.TABLE_POSTS, whereClause, whereArgs);
 	}
 }
