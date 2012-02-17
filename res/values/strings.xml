@@ -94,6 +94,7 @@
 <string name="lab_back">Back</string>
 <string name="lab_added_pupils">Selected pupils</string>
 <string name="lab_add_another_pupil">Add another pupil</string>
+<string name="lab_no_more_available_pupils">There are no more available pupils</string>
 <string-array name="array_tutorial_headers">
     <item>
         Adding Pupils

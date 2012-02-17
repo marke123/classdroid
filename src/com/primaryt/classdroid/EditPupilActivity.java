@@ -103,6 +103,7 @@ public class EditPupilActivity extends ClassdroidActivity {
 				Toast.makeText(EditPupilActivity.this,
 						getString(R.string.lab_pupil_updated),
 						Toast.LENGTH_LONG).show();
+				setResult(RESULT_OK);
 				finish();
 			}
 		});

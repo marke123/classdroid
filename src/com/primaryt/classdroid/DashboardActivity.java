@@ -35,7 +35,7 @@ public class DashboardActivity extends Activity {
 
 	private ArrayList<Pupil> pupils;
 	private int pupilId;
-	
+
 	private Button buttonAddPupil;
 
 	/** Called when the activity is first created. */
@@ -130,25 +130,34 @@ public class DashboardActivity extends Activity {
 	}
 
 	private void showAddPupilDialog() {
-		SelectPupilsDialog dialog = new SelectPupilsDialog(this);
-		dialog.setSelectedPupils(pupils);
-		dialog.show();
-		dialog.setOnDismissListener(new OnDismissListener() {
+		DBAdapter dbAdapter = new DBAdapter(this);
+		dbAdapter.open();
+		int pupilCount = dbAdapter.getAllPupils().size();
+		dbAdapter.close();
+		if (pupilCount > 1) {
+			SelectPupilsDialog dialog = new SelectPupilsDialog(this);
+			dialog.setSelectedPupils(pupils);
+			dialog.show();
+			dialog.setOnDismissListener(new OnDismissListener() {
 
-			@Override
-			public void onDismiss(DialogInterface dialog) {
-				SelectPupilsDialog d = (SelectPupilsDialog) dialog;
-				Pupil p = d.getSelectedPupil();
-				if (p != null) {
-					pupils.add(p);
-					adapter.addPupil(p);
-					adapter.notifyDataSetChanged();
+				@Override
+				public void onDismiss(DialogInterface dialog) {
+					SelectPupilsDialog d = (SelectPupilsDialog) dialog;
+					Pupil p = d.getSelectedPupil();
+					if (p != null) {
+						pupils.add(p);
+						adapter.addPupil(p);
+						adapter.notifyDataSetChanged();
+					}
+					if (adapter.getCount() == 3) {
+						buttonAddPupil.setEnabled(false);
+					}
 				}
-				if(adapter.getCount()==3){
-					buttonAddPupil.setEnabled(false);
-				}
-			}
-		});
+			});
+		} else {
+			Toast.makeText(this,
+					getString(R.string.lab_no_more_available_pupils),
+					Toast.LENGTH_LONG).show();
+		}
 	}
-
 }

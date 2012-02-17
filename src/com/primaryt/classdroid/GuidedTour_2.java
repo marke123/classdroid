@@ -34,7 +34,7 @@ public class GuidedTour_2 extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setData(Uri
-						.parse("http://crm.primaryt.co.uk/indexpb.php?registerpb"));
+						.parse("https://crm.primaryt.co.uk/signup.php?w=3"));
 				startActivity(intent);
 			}
 		});

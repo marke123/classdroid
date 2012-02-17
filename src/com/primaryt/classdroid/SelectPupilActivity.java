@@ -147,7 +147,6 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 			public void onCreateContextMenu(ContextMenu menu, View v,
 					ContextMenuInfo menuInfo) {
 				menu.setHeaderTitle(getString(R.string.lab_select_option));
-				menu.add(getString(R.string.lab_edit));
 				menu.add(getString(R.string.lab_delete));
 			}
 		});
