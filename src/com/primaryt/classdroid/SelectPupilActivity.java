@@ -348,6 +348,7 @@ public class SelectPupilActivity extends ClassdroidActivity implements
 		if(utils.isImportComplete()){
 			menu.removeItem(R.id.m_import);
 		}
+		menu.removeItem(R.id.m_edit_pupil);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
