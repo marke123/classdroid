@@ -39,18 +39,15 @@ public class WebUtils {
 
 		}
 
-		String imageURL = uploadImage(image, adjustedURL, context, username, password);
+		String imageURL = uploadImage(image, adjustedURL, context, username,
+				password);
 
 		XMLRPCClient client = new XMLRPCClient(adjustedURL + "xmlrpc.php");
 		HashMap<String, Object> content = new HashMap<String, Object>();
 		content.put("post_type", "post");
-		String pupilString = "";
-		for (Pupil p : pupils) {
-			pupilString = pupilString + p.getName() + " + ";
-		}
+		String pupilString = formatNames(pupils);
 
-		pupilString = pupilString.substring(0, pupilString.length() - 2);
-		content.put("title", pupilString + " " + "'s work");
+		content.put("title", pupilString);
 		// content.put("title", "Assignment for " + pupil.getName());
 		content.put("description",
 				prepareBodyOfPost(grade, imageURL, image, note));
@@ -209,5 +206,27 @@ public class WebUtils {
 
 	public static String getPostUrl(String postID, String url) {
 		return url + "?p=" + postID;
+	}
+
+	private static String formatNames(ArrayList<Pupil> names) {
+		StringBuffer buffer = new StringBuffer();
+		for (Pupil name : names) {
+			buffer.append(name.getName());
+			buffer.append("___");
+		}
+
+		int lastIndex = buffer.lastIndexOf("___");
+		if (lastIndex > 0)
+			buffer.replace(lastIndex, lastIndex + 3, "");
+
+		lastIndex = buffer.lastIndexOf("___");
+		if (lastIndex > 0)
+			buffer.replace(lastIndex, lastIndex + 3, " & ");
+
+		String changedToCommas = buffer.toString();
+		changedToCommas = changedToCommas.replaceAll("___", ", ");
+
+		changedToCommas = changedToCommas + "\'s Work";
+		return changedToCommas;
 	}
 }

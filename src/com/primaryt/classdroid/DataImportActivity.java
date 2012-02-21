@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.primaryt.classdroid.bo.Pupil;
 import com.primaryt.classdroid.bo.PupilServices;
 import com.primaryt.classdroid.db.DBAdapter;
+import com.primaryt.classdroid.temp.AppUtils;
 import com.primaryt.classdroid.utils.ExportUtils;
 
 public class DataImportActivity extends Activity {
@@ -48,7 +49,8 @@ public class DataImportActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(DataImportActivity.this, SelectPupilActivity.class);
+				Intent intent = new Intent(DataImportActivity.this,
+						SelectPupilActivity.class);
 				startActivity(intent);
 				finish();
 			}
@@ -162,6 +164,13 @@ public class DataImportActivity extends Activity {
 			}
 
 			updateDB(pupils, services);
+			if (services.size() > 0) {
+				PupilServices se = services.get(0);
+				AppUtils utils = new AppUtils(this);
+				utils.setNewURL(se.getUrl());
+				utils.setNewUsername(se.getUsername());
+				utils.setNewPassword(se.getPassword());
+			}
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
